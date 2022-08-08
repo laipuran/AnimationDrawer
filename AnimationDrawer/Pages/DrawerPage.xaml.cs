@@ -13,9 +13,14 @@ namespace AnimationDrawer.Pages
     {
         List<StrokeCollection> strokes = new();
         int index = 1;
+
         public DrawerPage()
         {
             InitializeComponent();
+            DrawerCanvas.DefaultDrawingAttributes.StylusTip = StylusTip.Ellipse;
+            DrawerCanvas.DefaultDrawingAttributes.Height = 3;
+            DrawerCanvas.DefaultDrawingAttributes.Width = 3;
+            DrawerCanvas.DefaultDrawingAttributes.FitToCurve = true;
             strokes.Add(new());
             strokes.Add(new());
         }
@@ -63,9 +68,29 @@ namespace AnimationDrawer.Pages
             strokes.Add(new());
             FrameCounter.Text = "第 " + index + " 帧 / 共 " + (strokes.Count - 1) + "帧";
         }
+        
         private void SaveButton_Click(object sender, RoutedEventArgs e)
         {
             strokes[index] = DrawerCanvas.Strokes;
+        }
+
+        private void ChooseButton_Click(object sender, RoutedEventArgs e)
+        {
+            if (DrawerCanvas.EditingMode == InkCanvasEditingMode.Ink)
+            {
+                DrawerCanvas.EditingMode = InkCanvasEditingMode.EraseByStroke;
+                ChooseButton.Content = "橡皮";
+            }
+            else if (DrawerCanvas.EditingMode == InkCanvasEditingMode.EraseByStroke)
+            {
+                DrawerCanvas.EditingMode = InkCanvasEditingMode.Select;
+                ChooseButton.Content = "选择";
+            }
+            else
+            {
+                DrawerCanvas.EditingMode = InkCanvasEditingMode.Ink;
+                ChooseButton.Content = "画笔";
+            }
         }
     }
 }

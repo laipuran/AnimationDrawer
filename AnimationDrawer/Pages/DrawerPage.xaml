@@ -1,0 +1,44 @@
+﻿<Page x:Class="AnimationDrawer.Pages.DrawerPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:AnimationDrawer.Pages"
+      mc:Ignorable="d" 
+      d:DesignHeight="900" d:DesignWidth="1200">
+
+    <StackPanel>
+        <TextBlock x:Name="FrameCounter" Text="第 1 帧 / 共 1 帧" Style="{StaticResource ContentTextBlockStyle}"/>
+
+        <Grid Margin="0,10,0,0" Background="{x:Static SystemParameters.WindowGlassBrush}">
+            <InkCanvas x:Name="DrawerCanvas" Width="1080" Height="720"
+                       Panel.ZIndex="1" Opacity="0.75" Cursor="Pen" ForceCursor="True"/>
+            <InkCanvas x:Name="PreviewCanvas" Width="1080" Height="720"
+                       Panel.ZIndex="0"/>
+        </Grid>
+
+        <StackPanel Orientation="Horizontal" Margin="0,10,0,0">
+            <Button Width="100" Height="40" Content="画笔"
+                    x:Name="ChooseButton" Click="ChooseButton_Click"
+                    Style="{StaticResource ContentButtonStyle}"
+                    Margin="20,0,0,0" ToolTip="单击切换工具"/>
+            <Button Width="100" Height="40" Content="上一张"
+                    x:Name="PreviousButton" Click="PreviousButton_Click"
+                    Style="{StaticResource ContentButtonStyle}"
+                    IsEnabled="False" Margin="20,0,0,0"/>
+            <Button Width="100" Height="40" Content="清空"
+                    x:Name="ClearButton" Click="ClearButton_Click"
+                    Style="{StaticResource ContentButtonStyle}"
+                    MouseDoubleClick="ClearButton_MouseDoubleClick"
+                    Margin="20,0,0,0"/>
+            <Button Width="100" Height="40" Content="下一张"
+                    x:Name="NextButton" Click="NextButton_Click"
+                    Style="{StaticResource ContentButtonStyle}"
+                    Margin="20,0,0,0"/>
+            <Button Width="100" Height="40" Content="保存"
+                    x:Name="SaveButton" Click="SaveButton_Click"
+                    Style="{StaticResource ContentButtonStyle}"
+                    Margin="20,0,0,0"/>
+        </StackPanel>
+    </StackPanel>
+</Page>
