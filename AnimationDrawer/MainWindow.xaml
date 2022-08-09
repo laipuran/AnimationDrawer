@@ -65,7 +65,7 @@
         </StackPanel>
         <TextBlock DockPanel.Dock="Top" x:Name="TitleTextBlock"
                    Style="{StaticResource TitleTextBlockStyle}"
-                   Text="绘图" Margin="20,10,0,0"/>
+                   Text="绘图" Margin="20,5,0,0"/>
         <ScrollViewer Margin="20,10,0,0">
             <Frame x:Name="ContentFrame" NavigationUIVisibility="Hidden"
                    Source="/Pages/DrawerPage.xaml" Navigated="ContentFrame_Navigated"/>
