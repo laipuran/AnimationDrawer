@@ -7,13 +7,13 @@
   IgnorableNamespaces="uap rescap">
 
   <Identity
-    Name="4d2c65ca-ec69-46d6-b624-5c4dc58f2f5e"
-    Publisher="CN=Laifuzhou"
+    Name="31869PuranLai.10476DDEBDE25"
+    Publisher="CN=7E1D7CD2-F295-49DB-BDCB-DDA4AF0952D2"
     Version="1.0.0.0" />
 
   <Properties>
-    <DisplayName>AnimationDrawer.Package</DisplayName>
-    <PublisherDisplayName>Laifuzhou</PublisherDisplayName>
+    <DisplayName>Animation Drawer</DisplayName>
+    <PublisherDisplayName>Puran Lai</PublisherDisplayName>
     <Logo>Images\StoreLogo.png</Logo>
   </Properties>
 
@@ -31,7 +31,7 @@
       Executable="$targetnametoken$.exe"
       EntryPoint="$targetentrypoint$">
       <uap:VisualElements
-        DisplayName="AnimationDrawer.Package"
+        DisplayName="Animation Drawer"
         Description="AnimationDrawer.Package"
         BackgroundColor="transparent"
         Square150x150Logo="Images\Square150x150Logo.png"

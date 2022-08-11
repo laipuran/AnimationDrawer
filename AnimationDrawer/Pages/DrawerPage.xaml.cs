@@ -1,8 +1,10 @@
 ﻿using System.Collections.Generic;
+using System.Threading;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Ink;
 using System.Windows.Input;
+using SharpDX.DirectInput;
 
 namespace AnimationDrawer.Pages
 {
@@ -107,5 +109,20 @@ namespace AnimationDrawer.Pages
             }
             DrawerCanvas.Focus();
         }
+
+        private void GetStatusButton_Click(object sender, RoutedEventArgs e)
+        {
+            DirectInput directInput = new();
+            IList<DeviceInstance> allDevices = directInput.GetDevices();
+            List<Joystick> joysticks = new();
+            foreach (var deviceInstance in allDevices)
+            {
+                if (deviceInstance.Type == DeviceType.Joystick)
+                {
+                    MessageBox.Show(deviceInstance.InstanceGuid.ToString());
+                }
+            }
+        }
+
     }
 }
