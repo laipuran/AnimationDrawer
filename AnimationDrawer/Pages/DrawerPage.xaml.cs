@@ -18,12 +18,14 @@ namespace AnimationDrawer.Pages
         public DrawerPage()
         {
             InitializeComponent();
+
+            DrawerCanvas.DefaultDrawingAttributes.StylusTip = StylusTip.Ellipse;
+            DrawerCanvas.DefaultDrawingAttributes.Height = 3;
+            DrawerCanvas.DefaultDrawingAttributes.Width = 3;
+            DrawerCanvas.DefaultDrawingAttributes.FitToCurve = true;
+            
             if (App.strokes.Count == 0)
             {
-                DrawerCanvas.DefaultDrawingAttributes.StylusTip = StylusTip.Ellipse;
-                DrawerCanvas.DefaultDrawingAttributes.Height = 3;
-                DrawerCanvas.DefaultDrawingAttributes.Width = 3;
-                DrawerCanvas.DefaultDrawingAttributes.FitToCurve = true;
                 App.strokes.Add(new());
                 App.strokes.Add(new());
             }
