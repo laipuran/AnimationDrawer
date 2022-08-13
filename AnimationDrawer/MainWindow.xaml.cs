@@ -1,6 +1,11 @@
 ﻿using System;
+using System.Resources;
+using System.Drawing;
 using System.Windows;
+using System.Windows.Interop;
+using System.Windows.Media;
 using System.Windows.Media.Animation;
+using System.Windows.Media.Imaging;
 
 namespace AnimationDrawer
 {
@@ -16,6 +21,19 @@ namespace AnimationDrawer
         public MainWindow()
         {
             InitializeComponent();
+
+            Icon = GetIcon();
+        }
+        
+        private ImageSource GetIcon()
+        {
+            ResourceManager Loader = Resource.ResourceManager;
+#pragma warning disable CS8600 // 将 null 字面量或可能为 null 的值转换为非 null 类型。
+#pragma warning disable CS8604 // 引用类型参数可能为 null。
+            Bitmap icon = new((Image)Loader.GetObject("icon"));
+#pragma warning restore CS8604 // 引用类型参数可能为 null。
+#pragma warning restore CS8600 // 将 null 字面量或可能为 null 的值转换为非 null 类型。
+            return Imaging.CreateBitmapSourceFromHBitmap(icon.GetHbitmap(), IntPtr.Zero, Int32Rect.Empty, BitmapSizeOptions.FromEmptyOptions());
         }
 
         private void NavigationButton_Click(object sender, RoutedEventArgs e)
