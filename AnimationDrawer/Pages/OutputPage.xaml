@@ -16,20 +16,21 @@
                     Click="AddButton_Click"
                     Style="{StaticResource ContentButtonStyle}"/>
             <Button x:Name="MergeButton" Content="合并动画"
-                    Click="MergeButton_Click"
+                    Click="MergeButton_Click" Margin="5,0,0,0"
                     Style="{StaticResource ContentButtonStyle}"/>
             <Button x:Name="InputButton" Content="导入画板"
-                    Click="InputButton_Click"
+                    Click="InputButton_Click" Margin="5,0,0,0"
                     Style="{StaticResource ContentButtonStyle}"/>
         </StackPanel>
         
-        <StackPanel Style="{StaticResource ContentStackPanelStyle}">
+        <StackPanel Style="{StaticResource ContentStackPanelStyle}" Margin="0,10,0,0">
             <TextBlock Text="将画板导出为 .json 文件：" Style="{StaticResource ContentTextBlockStyle}"/>
             <Button x:Name="JsonButton" Content="导出"
                     Click="JsonButton_Click"
                     Style="{StaticResource ContentButtonStyle}"/>
         </StackPanel>
         
-        <TextBlock x:Name="MessageTextBlock" Style="{StaticResource ContentTextBlockStyle}"/>
+        <TextBlock x:Name="MessageTextBlock" Margin="0,10,0,0"
+                   Style="{StaticResource ContentTextBlockStyle}"/>
     </StackPanel>
 </Page>
