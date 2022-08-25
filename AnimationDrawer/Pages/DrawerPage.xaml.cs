@@ -88,8 +88,7 @@ namespace AnimationDrawer.Pages
         
         private void SaveButton_Click(object sender, RoutedEventArgs e)
         {
-            App.strokes[index] = DrawerCanvas.Strokes;
-            DrawerCanvas.Focus();
+            SaveStrokes();
         }
 
         private void ChooseButton_Click(object sender, RoutedEventArgs e)
@@ -126,5 +125,15 @@ namespace AnimationDrawer.Pages
             }
         }
 
+        private void SaveStrokes()
+        {
+            App.strokes[index] = DrawerCanvas.Strokes;
+            DrawerCanvas.Focus();
+        }
+
+        private void Page_Unloaded(object sender, RoutedEventArgs e)
+        {
+            SaveStrokes();
+        }
     }
 }
