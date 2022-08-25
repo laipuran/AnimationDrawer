@@ -17,6 +17,7 @@ namespace AnimationDrawer
     {
         Uri DrawerUri = new("Pages/DrawerPage.xaml", UriKind.Relative);
         Uri PreviewUri = new("Pages/PreviewPage.xaml", UriKind.Relative);
+        Uri OutputUri = new("Pages/OutputPage.xaml", UriKind.Relative);
         bool MenuClosed = true;
         public MainWindow()
         {
@@ -25,7 +26,7 @@ namespace AnimationDrawer
             Icon = GetIcon();
         }
         
-        private ImageSource GetIcon()
+        private static ImageSource GetIcon()
         {
             ResourceManager Loader = Resource.ResourceManager;
 #pragma warning disable CS8600 // 将 null 字面量或可能为 null 的值转换为非 null 类型。
@@ -61,6 +62,10 @@ namespace AnimationDrawer
             {
                 ContentFrame.NavigationService.Navigate(PreviewUri);
             }
+            else if (ContentListBox.SelectedItem == OutputListBoxItem)
+            {
+                ContentFrame.NavigationService.Navigate(OutputUri);
+            }
         }
 
 
@@ -83,6 +88,11 @@ namespace AnimationDrawer
             {
                 TitleTextBlock.Text = "预览";
                 PreviewListBoxItem.IsSelected = true;
+            }
+            else if ("/" + ContentFrame.Source.ToString() == OutputUri.ToString())
+            {
+                TitleTextBlock.Text = "导出";
+                OutputListBoxItem.IsSelected = true;
             }
         }
     }

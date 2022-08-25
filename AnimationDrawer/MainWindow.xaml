@@ -5,18 +5,18 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:AnimationDrawer"
         mc:Ignorable="d"
-        Title="Animation Drawer" Height="910" Width="1200">
+        Title="Animation Drawer" Height="950" Width="1200">
     <Window.Resources>
         <Storyboard x:Key="MenuOpen">
             <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(FrameworkElement.Width)"
                                            Storyboard.TargetName="MenuStackPanel">
-                <EasingDoubleKeyFrame KeyTime="0:0:0.15" Value="170"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.175" Value="120"/>
             </DoubleAnimationUsingKeyFrames>
         </Storyboard>
         <Storyboard x:Key="MenuClose">
             <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(FrameworkElement.Width)"
                                            Storyboard.TargetName="MenuStackPanel">
-                <EasingDoubleKeyFrame KeyTime="0:0:0.15" Value="42"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.175" Value="42"/>
             </DoubleAnimationUsingKeyFrames>
         </Storyboard>
     </Window.Resources>
@@ -55,6 +55,17 @@
                         <TextBlock Text="&#xE155;"
                                 Style="{StaticResource IconTextBlockStyle}"/>
                         <TextBlock Text="预览"
+                           Style="{StaticResource NavigationTextBlockStyle}"
+                           Margin="5,0,0,0"/>
+                    </StackPanel>
+                </ListBoxItem>
+                
+                <ListBoxItem x:Name="OutputListBoxItem"
+                             Style="{StaticResource ContentListBoxItemStyle}">
+                    <StackPanel Style="{StaticResource NavigationStackPanelStyle}">
+                        <TextBlock Text="&#xEDE1;"
+                                Style="{StaticResource IconTextBlockStyle}"/>
+                        <TextBlock Text="导出"
                            Style="{StaticResource NavigationTextBlockStyle}"
                            Margin="5,0,0,0"/>
                     </StackPanel>
