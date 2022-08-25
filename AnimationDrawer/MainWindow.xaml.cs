@@ -69,16 +69,6 @@ namespace AnimationDrawer
             if (ContentFrame.CanGoBack)
             {
                 ContentFrame.GoBack();
-                if ("/" + ContentFrame.Source.ToString() == DrawerUri.ToString())
-                {
-                    TitleTextBlock.Text = "绘图";
-                    DrawerListBoxItem.IsSelected = true;
-                }
-                else if ("/" + ContentFrame.Source.ToString() == PreviewUri.ToString())
-                {
-                    TitleTextBlock.Text = "预览";
-                    PreviewListBoxItem.IsSelected = true;
-                }
             }
         }
 
