@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using System.Threading;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Ink;
@@ -88,7 +87,7 @@ namespace AnimationDrawer.Pages
             FrameCounter.Text = "第 " + index + " 帧 / 共 " + (App.strokes.Count - 1) + "帧";
             DrawerCanvas.Focus();
         }
-        
+
         private void SaveButton_Click(object sender, RoutedEventArgs e)
         {
             SaveStrokes();

@@ -1,6 +1,6 @@
 ﻿using System;
-using System.Resources;
 using System.Drawing;
+using System.Resources;
 using System.Windows;
 using System.Windows.Interop;
 using System.Windows.Media;
@@ -25,7 +25,7 @@ namespace AnimationDrawer
 
             Icon = GetIcon();
         }
-        
+
         private static ImageSource GetIcon()
         {
             ResourceManager Loader = Resource.ResourceManager;
