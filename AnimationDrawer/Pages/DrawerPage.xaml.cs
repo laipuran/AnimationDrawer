@@ -13,6 +13,7 @@ namespace AnimationDrawer.Pages
     /// </summary>
     public partial class DrawerPage : Page
     {
+        List<StrokeCollection> strokes = new();
         int index = 1;
 
         public DrawerPage()
@@ -23,16 +24,19 @@ namespace AnimationDrawer.Pages
             DrawerCanvas.DefaultDrawingAttributes.Height = 3;
             DrawerCanvas.DefaultDrawingAttributes.Width = 3;
             DrawerCanvas.DefaultDrawingAttributes.FitToCurve = true;
-            
-            if (App.strokes.Count == 0)
+
+            strokes = new();
+            strokes.Add(new());
+            strokes.AddRange(App.strokes);
+
+            if (strokes.Count == 1)
             {
-                App.strokes.Add(new());
-                App.strokes.Add(new());
+                strokes.Add(new());
             }
             else
             {
                 FrameCounter.Text = "第 " + index + " 帧 / 共 " + (App.strokes.Count - 1) + " 帧";
-                DrawerCanvas.Strokes = App.strokes[index];
+                DrawerCanvas.Strokes = strokes[index];
             }
             DrawerCanvas.Focus();
         }
@@ -45,42 +49,42 @@ namespace AnimationDrawer.Pages
 
         private void PreviousButton_Click(object sender, RoutedEventArgs e)
         {
-            App.strokes[index] = DrawerCanvas.Strokes;
+            strokes[index] = DrawerCanvas.Strokes;
             index--;
             if (index <= 1)
             {
                 PreviousButton.IsEnabled = false;
             }
-            DrawerCanvas.Strokes = App.strokes[index];
-            PreviewCanvas.Strokes = App.strokes[index - 1];
+            DrawerCanvas.Strokes = strokes[index];
+            PreviewCanvas.Strokes = strokes[index - 1];
 
-            FrameCounter.Text = "第 " + index + " 帧 / 共 " + (App.strokes.Count - 1) + " 帧";
+            FrameCounter.Text = "第 " + index + " 帧 / 共 " + (strokes.Count - 1) + " 帧";
             DrawerCanvas.Focus();
         }
 
         private void NextButton_Click(object sender, RoutedEventArgs e)
         {
             PreviousButton.IsEnabled = true;
-            App.strokes[index] = DrawerCanvas.Strokes;
+            strokes[index] = DrawerCanvas.Strokes;
             index++;
-            if (index > App.strokes.Count - 1)
+            if (index > strokes.Count - 1)
             {
-                App.strokes.Add(new());
+                strokes.Add(new());
             }
-            DrawerCanvas.Strokes = App.strokes[index];
-            PreviewCanvas.Strokes = App.strokes[index - 1];
-            FrameCounter.Text = "第 " + index + " 帧 / 共 " + (App.strokes.Count - 1) + " 帧";
+            DrawerCanvas.Strokes = strokes[index];
+            PreviewCanvas.Strokes = strokes[index - 1];
+            FrameCounter.Text = "第 " + index + " 帧 / 共 " + (strokes.Count - 1) + " 帧";
             DrawerCanvas.Focus();
         }
 
         private void ClearButton_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
             index = 1;
-            App.strokes = new();
+            strokes = new();
             DrawerCanvas.Strokes = new();
             PreviewCanvas.Strokes = new();
-            App.strokes.Add(new());
-            App.strokes.Add(new());
+            strokes.Add(new());
+            strokes.Add(new());
             PreviousButton.IsEnabled = false;
             FrameCounter.Text = "第 " + index + " 帧 / 共 " + (App.strokes.Count - 1) + "帧";
             DrawerCanvas.Focus();
@@ -111,23 +115,18 @@ namespace AnimationDrawer.Pages
             DrawerCanvas.Focus();
         }
 
-        private void GetStatusButton_Click(object sender, RoutedEventArgs e)
-        {
-            DirectInput directInput = new();
-            IList<DeviceInstance> allDevices = directInput.GetDevices();
-            List<Joystick> joysticks = new();
-            foreach (var deviceInstance in allDevices)
-            {
-                if (deviceInstance.Type == DeviceType.Joystick)
-                {
-                    MessageBox.Show(deviceInstance.InstanceGuid.ToString());
-                }
-            }
-        }
-
         private void SaveStrokes()
         {
-            App.strokes[index] = DrawerCanvas.Strokes;
+            strokes[index] = DrawerCanvas.Strokes;
+
+            List<StrokeCollection> strokesList = new();
+            for (int i = 1; i < strokes.Count; i++)
+            {
+                strokesList.Add(strokes[i]);
+            }
+
+            App.strokes = strokesList;
+
             DrawerCanvas.Focus();
         }
 
