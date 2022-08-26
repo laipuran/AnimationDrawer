@@ -4,7 +4,6 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Ink;
 using System.Windows.Input;
-using SharpDX.DirectInput;
 
 namespace AnimationDrawer.Pages
 {
