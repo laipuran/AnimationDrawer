@@ -10,5 +10,10 @@ namespace AnimationDrawer
     public partial class App : Application
     {
         public static List<StrokeCollection> strokes = new();
+
+        private void Application_Startup(object sender, StartupEventArgs e)
+        {
+            strokes.Add(new());
+        }
     }
 }
