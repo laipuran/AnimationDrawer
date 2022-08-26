@@ -29,6 +29,7 @@ namespace AnimationDrawer.Pages
             InitializeComponent();
             PreviewCanvas.Strokes = new();
             FrameSlider.Maximum = App.strokes.Count - 1;
+            FrameSlider.Value = 0;
         }
 
         private void PlayButton_Click(object sender, RoutedEventArgs e)
@@ -58,7 +59,7 @@ namespace AnimationDrawer.Pages
         {
             index = (int)FrameSlider.Value;
             await Task.Run(() => Dispatcher.BeginInvoke(new Action(() => { PreviewCanvas.Strokes = App.strokes[index]; })));
-            await Task.Run(() => Dispatcher.BeginInvoke(new Action(() => { FrameTextBlock.Text = index.ToString(); })));
+            await Task.Run(() => Dispatcher.BeginInvoke(new Action(() => { FrameTextBlock.Text = (index + 1).ToString(); })));
         }
     }
 }
