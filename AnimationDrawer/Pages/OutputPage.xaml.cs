@@ -1,5 +1,4 @@
-﻿using AnimationDrawer.Ink;
-using Microsoft.Win32;
+﻿using Microsoft.Win32;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using System;
@@ -20,6 +19,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using Path = System.IO.Path;
+using static AnimationDrawer.SingleFrame;
 
 namespace AnimationDrawer.Pages
 {
@@ -28,8 +28,8 @@ namespace AnimationDrawer.Pages
     /// </summary>
     public partial class OutputPage : Page
     {
-        List<AnimationPiece> pieces = new();
-        AnimationPiece piece = new();
+        List<List<StrokeCollection>> Strokes = new();
+        List<StrokeCollection> allStrokes = new();
         public OutputPage()
         {
             InitializeComponent();
@@ -43,7 +43,14 @@ namespace AnimationDrawer.Pages
                 "-" + DateTime.Now.Minute.ToString() + "-" + DateTime.Now.Second.ToString();
             string path = directory + fileName + ".json";
 
-            string json = JsonConvert.SerializeObject(AnimationPiece.GetAnimationPiece(App.strokes));
+            List<SingleFrame> current = new();
+
+            foreach (StrokeCollection item in App.strokes)
+            {
+                current.Add(GetSingleFrame(item));
+            }
+
+            string json = JsonConvert.SerializeObject(current);
 
             if (!Directory.Exists(directory))
             {
@@ -75,13 +82,16 @@ namespace AnimationDrawer.Pages
                 foreach (string filePath in openFileDialog.FileNames)
                 {
 #pragma warning disable CS8600 // 将 null 字面量或可能为 null 的值转换为非 null 类型。
-                    AnimationPiece objectPiece = JsonConvert.DeserializeObject<AnimationPiece>(File.ReadAllText(filePath));
+                    AnimationPiece strokes = JsonConvert.DeserializeObject<AnimationPiece>(File.ReadAllText(filePath));
 #pragma warning restore CS8600 // 将 null 字面量或可能为 null 的值转换为非 null 类型。
 
-                    if (objectPiece is null)
+                    if (strokes is null)
                         return;
 
-                    pieces.Add(objectPiece);
+                    List<StrokeCollection> lsc = new();
+                    //TODO: Add logic to load animation piece
+
+                    Strokes.Add(lsc);
                     MessageTextBlock.Text += "\n" + Path.GetFileNameWithoutExtension(filePath) + " 加载完成";
                 }
             }
@@ -89,13 +99,19 @@ namespace AnimationDrawer.Pages
 
         private void MergeButton_Click(object sender, RoutedEventArgs e)
         {
-            piece = AnimationPiece.MergeAnimationPieces(pieces);
-            MessageTextBlock.Text += $"\n合并完成，总帧数 = {piece.Frames.Count}";
+            foreach (List<StrokeCollection> stroke in Strokes)
+            {
+                allStrokes.AddRange(stroke);
+            }
+            MessageTextBlock.Text += $"\n合并完成，length = {allStrokes.Count}\n切换页面以清空缓存";
         }
 
         private void InputButton_Click(object sender, RoutedEventArgs e)
         {
-            App.strokes = AnimationPiece.GetCollectionList(piece);
+            List<StrokeCollection> current = new();
+            current.Add(new());
+            current.AddRange(allStrokes);
+            App.strokes = current;
             MessageTextBlock.Text += "\n 导入完成";
         }
     }

@@ -17,10 +17,8 @@ namespace AnimationDrawer.Ink
 
         public static StrokeProperty GetStrokeProperty(Stroke stroke)
         {
-            StrokeProperty strokeProperty = new()
-            {
-                DrawingAttributes = stroke.DrawingAttributes
-            };
+            StrokeProperty strokeProperty = new();
+            strokeProperty.DrawingAttributes = stroke.DrawingAttributes;
             foreach (StylusPoint item in stroke.StylusPoints)
             {
                 strokeProperty.StylusPoints.Add(item);
@@ -39,7 +37,7 @@ namespace AnimationDrawer.Ink
             StylusPointCollection points = new();
             foreach (StylusPoint item in stylusPoints)
             {
-                points.Insert(points.Count, item);
+                points.Append(item);
             }
             return points;
         }
@@ -104,16 +102,14 @@ namespace AnimationDrawer.Ink
 
         public static AnimationPiece GetAnimationPiece(List<SingleFrame> frames)
         {
-            AnimationPiece piece = new()
-            {
-                Frames = frames
-            };
+            AnimationPiece piece = new();
+            piece.Frames = frames;
             return piece;
         }
 
         public static AnimationPiece GetAnimationPiece(List<StrokeCollection> strokes)
         {
-            AnimationPiece piece = new();
+            AnimationPiece piece = new AnimationPiece();
             foreach (StrokeCollection stroke in strokes)
             {
                 piece.Frames.Add(SingleFrame.GetSingleFrame(stroke));
@@ -123,7 +119,7 @@ namespace AnimationDrawer.Ink
 
         public static AnimationPiece GetAnimationPiece(List<StrokeCollection> strokes, ImageSource source)
         {
-            AnimationPiece piece = new();
+            AnimationPiece piece = new AnimationPiece();
             foreach (StrokeCollection stroke in strokes)
             {
                 piece.Frames.Add(SingleFrame.GetSingleFrame(stroke, source));
