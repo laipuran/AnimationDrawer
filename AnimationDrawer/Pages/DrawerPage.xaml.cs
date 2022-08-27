@@ -47,33 +47,13 @@ namespace AnimationDrawer.Pages
 
         private void PreviousButton_Click(object sender, RoutedEventArgs e)
         {
-            strokes[index] = DrawerCanvas.Strokes;
-            index--;
-            if (index <= 1)
-            {
-                PreviousButton.IsEnabled = false;
+            PreviousPage();
             }
-            DrawerCanvas.Strokes = strokes[index];
-            PreviewCanvas.Strokes = strokes[index - 1];
-
-            FrameCounter.Text = "第 " + index + " 帧 / 共 " + (strokes.Count - 1) + " 帧";
-            DrawerCanvas.Focus();
-        }
 
         private void NextButton_Click(object sender, RoutedEventArgs e)
         {
-            PreviousButton.IsEnabled = true;
-            strokes[index] = DrawerCanvas.Strokes;
-            index++;
-            if (index > strokes.Count - 1)
-            {
-                strokes.Add(new());
+            NextPage();
             }
-            DrawerCanvas.Strokes = strokes[index];
-            PreviewCanvas.Strokes = strokes[index - 1];
-            FrameCounter.Text = "第 " + index + " 帧 / 共 " + (strokes.Count - 1) + " 帧";
-            DrawerCanvas.Focus();
-        }
 
         private void ClearButton_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
@@ -84,7 +64,7 @@ namespace AnimationDrawer.Pages
             strokes.Add(new());
             strokes.Add(new());
             PreviousButton.IsEnabled = false;
-            FrameCounter.Text = "第 " + index + " 帧 / 共 " + (App.strokes.Count - 1) + "帧";
+            FrameCounter.Text = "第 " + index + " 帧 / 共 " + (strokes.Count - 1) + "帧";
             DrawerCanvas.Focus();
         }
 
@@ -113,6 +93,11 @@ namespace AnimationDrawer.Pages
             DrawerCanvas.Focus();
         }
 
+        private void Page_Unloaded(object sender, RoutedEventArgs e)
+        {
+            SaveStrokes();
+        }
+
         private void SaveStrokes()
         {
             strokes[index] = DrawerCanvas.Strokes;
@@ -125,6 +110,36 @@ namespace AnimationDrawer.Pages
 
             App.strokes = strokesList;
 
+            DrawerCanvas.Focus();
+        }
+
+        private void PreviousPage()
+        {
+            strokes[index] = DrawerCanvas.Strokes;
+            index--;
+            if (index <= 1)
+            {
+                PreviousButton.IsEnabled = false;
+            }
+            DrawerCanvas.Strokes = strokes[index];
+            PreviewCanvas.Strokes = strokes[index - 1];
+
+            FrameCounter.Text = "第 " + index + " 帧 / 共 " + (strokes.Count - 1) + " 帧";
+            DrawerCanvas.Focus();
+        }
+
+        private void NextPage()
+        {
+            PreviousButton.IsEnabled = true;
+            strokes[index] = DrawerCanvas.Strokes;
+            index++;
+            if (index > strokes.Count - 1)
+            {
+                strokes.Add(new());
+            }
+            DrawerCanvas.Strokes = strokes[index];
+            PreviewCanvas.Strokes = strokes[index - 1];
+            FrameCounter.Text = "第 " + index + " 帧 / 共 " + (strokes.Count - 1) + " 帧";
             DrawerCanvas.Focus();
         }
 
