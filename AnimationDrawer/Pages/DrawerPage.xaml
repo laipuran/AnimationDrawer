@@ -13,36 +13,35 @@
         <Grid Margin="0,10,0,0" Height="750"
               Background="{x:Static SystemParameters.WindowGlassBrush}">
             <InkCanvas x:Name="DrawerCanvas" Width="1080" Height="720"
-                       Panel.ZIndex="1" Opacity="0.75" Cursor="Pen" ForceCursor="True"/>
+                       Panel.ZIndex="1" Opacity="0.75"
+                       Cursor="Pen" ForceCursor="True"
+                       KeyDown="DrawerCanvas_KeyDown"/>
             <InkCanvas x:Name="PreviewCanvas" Width="1080" Height="720"
                        Panel.ZIndex="0"/>
         </Grid>
 
         <StackPanel Orientation="Horizontal" Margin="0,10,0,0" Height="40">
-            <Button Width="100" Content="画笔"
-                    x:Name="ChooseButton" Click="ChooseButton_Click"
-                    Style="{StaticResource ContentButtonStyle}"
-                    Margin="20,0,0,0" ToolTip="单击切换工具"/>
             <Button Width="100" Content="上一张"
                     x:Name="PreviousButton" Click="PreviousButton_Click"
                     Style="{StaticResource ContentButtonStyle}"
                     IsEnabled="False" Margin="20,0,0,0"/>
+            <Button Width="100" Content="下一张"
+                    x:Name="NextButton" Click="NextButton_Click"
+                    Style="{StaticResource ContentButtonStyle}"
+                    Margin="20,0,0,0"/>
             <Button Width="100" Content="清空"
                     x:Name="ClearButton" Click="ClearButton_Click"
                     Style="{StaticResource ContentButtonStyle}"
                     MouseDoubleClick="ClearButton_MouseDoubleClick"
                     Margin="20,0,0,0"/>
-            <Button Width="100" Content="下一张"
-                    x:Name="NextButton" Click="NextButton_Click"
-                    Style="{StaticResource ContentButtonStyle}"
-                    Margin="20,0,0,0"/>
             <Button Width="100" Content="保存"
                     x:Name="SaveButton" Click="SaveButton_Click"
                     Style="{StaticResource ContentButtonStyle}"
                     Margin="20,0,0,0"/>
-            <!--<Button Width="140" Content="获取手柄状态" Margin="140,0,0,0"
-                    x:Name="GetStatusButton" Click="GetStatusButton_Click"
-                    Style="{StaticResource ContentButtonStyle}"/>-->
+            <Button Width="100" Content="画笔"
+                    x:Name="ChooseButton" Click="ChooseButton_Click"
+                    Style="{StaticResource ContentButtonStyle}"
+                    Margin="20,0,0,0" ToolTip="单击切换工具"/>
         </StackPanel>
     </StackPanel>
 </Page>
