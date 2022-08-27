@@ -9,10 +9,13 @@
       Title="PreviewPage">
     <StackPanel>
         <TextBlock x:Name="FpsTextBlock" Text="帧率：50" Style="{StaticResource ContentTextBlockStyle}"/>
-        <Grid Margin="0,10,0,0" Height="750"
-              Background="{x:Static SystemParameters.WindowGlassBrush}">
-            <InkCanvas x:Name="PreviewCanvas" IsEnabled="False" Height="720" Width="1080"/>
-        </Grid>
+        <Border BorderBrush="{x:Static SystemParameters.WindowGlassBrush}"
+                BorderThickness="7.5">
+            <Grid Margin="0,10,0,0" Height="750">
+                <InkCanvas x:Name="PreviewCanvas" IsEnabled="False"
+                       Height="720" Width="1080"/>
+            </Grid>
+        </Border>
         <StackPanel Orientation="Horizontal" Margin="0,10,0,0" Height="40">
             <Button x:Name="PlayButton" Content="播放"
                     Width="100" Margin="20,0,0,0"
