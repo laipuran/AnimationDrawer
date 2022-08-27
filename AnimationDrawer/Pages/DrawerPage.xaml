@@ -5,7 +5,7 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:AnimationDrawer.Pages"
       mc:Ignorable="d" Unloaded="Page_Unloaded"
-      d:DesignHeight="825" d:DesignWidth="1200">
+      d:DesignHeight="950" d:DesignWidth="1200">
 
     <StackPanel>
         <TextBlock x:Name="FrameCounter" Text="第 1 帧 / 共 1 帧" Style="{StaticResource ContentTextBlockStyle}"/>
@@ -42,6 +42,10 @@
                     x:Name="ChooseButton" Click="ChooseButton_Click"
                     Style="{StaticResource ContentButtonStyle}"
                     Margin="20,0,0,0" ToolTip="单击切换工具"/>
+            <Button Width="100" Content="设置背景"
+                    x:Name="BackgroundButton" Click="BackgroundButton_Click"
+                    Style="{StaticResource ContentButtonStyle}"
+                    Margin="20,0,0,0" MouseDoubleClick="BackgroundButton_MouseDoubleClick"/>
         </StackPanel>
     </StackPanel>
 </Page>
