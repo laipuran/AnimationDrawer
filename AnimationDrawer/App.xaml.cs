@@ -1,6 +1,8 @@
 ﻿using System.Collections.Generic;
 using System.Windows;
 using System.Windows.Ink;
+using System.Windows.Media;
+using AnimationDrawer.Ink;
 
 namespace AnimationDrawer
 {
@@ -9,11 +11,11 @@ namespace AnimationDrawer
     /// </summary>
     public partial class App : Application
     {
-        public static List<StrokeCollection> strokes = new();
+        public static  AnimationPiece piece = new();
 
         private void Application_Startup(object sender, StartupEventArgs e)
         {
-            strokes.Add(new());
+            piece.Frames.Add(new());
         }
     }
 }

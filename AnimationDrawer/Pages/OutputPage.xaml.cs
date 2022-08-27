@@ -30,7 +30,7 @@ namespace AnimationDrawer.Pages
                 "-" + DateTime.Now.Minute.ToString() + "-" + DateTime.Now.Second.ToString();
             string path = directory + fileName + ".json";
 
-            string json = JsonConvert.SerializeObject(AnimationPiece.GetAnimationPiece(App.strokes));
+            string json = JsonConvert.SerializeObject(App.piece);
 
             if (!Directory.Exists(directory))
             {
@@ -82,7 +82,7 @@ namespace AnimationDrawer.Pages
 
         private void InputButton_Click(object sender, RoutedEventArgs e)
         {
-            App.strokes = AnimationPiece.GetCollectionList(piece);
+            App.piece = piece;
             MessageTextBlock.Text += "\n 导入完成";
         }
     }

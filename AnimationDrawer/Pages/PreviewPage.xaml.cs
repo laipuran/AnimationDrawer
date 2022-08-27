@@ -1,8 +1,11 @@
-﻿using System;
+﻿using AnimationDrawer.Ink;
+using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Ink;
+using System.Windows.Media;
 
 namespace AnimationDrawer.Pages
 {
@@ -17,7 +20,7 @@ namespace AnimationDrawer.Pages
         {
             InitializeComponent();
             PreviewCanvas.Strokes = new();
-            FrameSlider.Maximum = App.strokes.Count - 1;
+            FrameSlider.Maximum = App.piece.Frames.Count - 1;
             FrameSlider.Value = 0;
         }
 
@@ -30,9 +33,10 @@ namespace AnimationDrawer.Pages
 
         private async void PreviewStrokes()
         {
-            foreach (StrokeCollection item in App.strokes)
+            List<StrokeCollection> collections = AnimationPiece.GetStrokeCollections(App.piece);
+            foreach (StrokeCollection item in collections)
             {
-                index = App.strokes.IndexOf(item);
+                index = collections.IndexOf(item);
                 await Task.Run(() => Dispatcher.BeginInvoke(new Action(() => { FrameSlider.Value = index; })));
                 await Task.Delay(1000 / FPS);
             }
@@ -47,7 +51,8 @@ namespace AnimationDrawer.Pages
         private async void FrameSlider_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
         {
             index = (int)FrameSlider.Value;
-            await Task.Run(() => Dispatcher.BeginInvoke(new Action(() => { PreviewCanvas.Strokes = App.strokes[index]; })));
+            await Task.Run(() => Dispatcher.BeginInvoke(new Action(() => { PreviewCanvas.Strokes = SingleFrame.GetStrokes(App.piece.Frames[index]); })));
+            await Task.Run(() => Dispatcher.BeginInvoke(new Action(() => { PreviewCanvas.Background = new ImageBrush(App.piece.Frames[index].Background); })));
             await Task.Run(() => Dispatcher.BeginInvoke(new Action(() => { FrameTextBlock.Text = (index + 1).ToString(); })));
         }
     }

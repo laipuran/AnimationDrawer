@@ -18,7 +18,8 @@ namespace AnimationDrawer.Pages
     /// </summary>
     public partial class DrawerPage : Page
     {
-        List<StrokeCollection> strokes = new();
+        private AnimationPiece piece = new();
+        private ImageSource? source;
         int index = 1;
 
         public DrawerPage()
@@ -30,22 +31,22 @@ namespace AnimationDrawer.Pages
             DrawerCanvas.DefaultDrawingAttributes.Width = 3;
             DrawerCanvas.DefaultDrawingAttributes.FitToCurve = true;
 
-            strokes = new();
-            strokes.Add(new());
-            strokes.AddRange(App.strokes);
+            piece = new();
+            piece.Frames.Add(new());
+            piece = AnimationPiece.MergeAnimationPieces(piece, App.piece);
 
-            if (strokes.Count == 1)
+            if (piece.Frames.Count == 1)
             {
-                strokes.Add(new());
+                piece.Frames.Add(new());
+                ImageBrush brush = new(source);
+                DrawerCanvas.Background = brush;
             }
             else
             {
-                FrameCounter.Text = "第 " + index + " 帧 / 共 " + (App.strokes.Count - 1) + " 帧";
-                DrawerCanvas.Strokes = strokes[index];
+                FrameCounter.Text = "第 " + index + " 帧 / 共 " + (App.piece.Frames.Count - 1) + " 帧";
+                DrawerCanvas.Strokes = SingleFrame.GetStrokes(piece.Frames[index]);
             }
 
-            ImageBrush brush = new(App.source);
-            DrawerCanvas.Background = brush;
 
             DrawerCanvas.Focus();
         }
@@ -69,13 +70,13 @@ namespace AnimationDrawer.Pages
         private void ClearButton_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
             index = 1;
-            strokes = new();
+            piece = new();
             DrawerCanvas.Strokes = new();
             PreviewCanvas.Strokes = new();
-            strokes.Add(new());
-            strokes.Add(new());
+            piece.Frames.Add(new());
+            piece.Frames.Add(new());
             PreviousButton.IsEnabled = false;
-            FrameCounter.Text = "第 " + index + " 帧 / 共 " + (strokes.Count - 1) + "帧";
+            FrameCounter.Text = "第 " + index + " 帧 / 共 " + (piece.Frames.Count - 1) + "帧";
             DrawerCanvas.Focus();
         }
 
@@ -111,46 +112,58 @@ namespace AnimationDrawer.Pages
 
         private void SaveStrokes()
         {
-            strokes[index] = DrawerCanvas.Strokes;
+            piece.Frames[index] = SingleFrame.GetSingleFrame(DrawerCanvas.Strokes, source);
 
-            List<StrokeCollection> strokesList = new();
-            for (int i = 1; i < strokes.Count; i++)
+            AnimationPiece tempPiece = new();
+            for (int i = 1; i < piece.Frames.Count; i++)
             {
-                strokesList.Add(strokes[i]);
+                tempPiece.Frames.Add(piece.Frames[i]);
             }
 
-            App.strokes = strokesList;
+            App.piece = tempPiece;
 
             DrawerCanvas.Focus();
         }
 
         private void PreviousPage()
         {
-            strokes[index] = DrawerCanvas.Strokes;
+            piece.Frames[index] = SingleFrame.GetSingleFrame(DrawerCanvas.Strokes, source);
             index--;
             if (index <= 1)
             {
                 PreviousButton.IsEnabled = false;
             }
-            DrawerCanvas.Strokes = strokes[index];
-            PreviewCanvas.Strokes = strokes[index - 1];
-
-            FrameCounter.Text = "第 " + index + " 帧 / 共 " + (strokes.Count - 1) + " 帧";
-            DrawerCanvas.Focus();
+            DisplayStrokes();
         }
 
         private void NextPage()
         {
             PreviousButton.IsEnabled = true;
-            strokes[index] = DrawerCanvas.Strokes;
+            piece.Frames[index] = SingleFrame.GetSingleFrame(DrawerCanvas.Strokes, source);
             index++;
-            if (index > strokes.Count - 1)
+            if (index > piece.Frames.Count - 1)
             {
-                strokes.Add(new());
+                piece.Frames.Add(new());
             }
-            DrawerCanvas.Strokes = strokes[index];
-            PreviewCanvas.Strokes = strokes[index - 1];
-            FrameCounter.Text = "第 " + index + " 帧 / 共 " + (strokes.Count - 1) + " 帧";
+            DisplayStrokes();
+        }
+
+        private void DisplayStrokes()
+        {
+            if (index <= 0)
+            {
+                return;
+            }
+            DrawerCanvas.Strokes = SingleFrame.GetStrokes(piece.Frames[index]);
+            try
+            {
+                PreviewCanvas.Strokes = SingleFrame.GetStrokes(piece.Frames[index - 1]);
+            }
+            catch { }
+
+            DrawerCanvas.Background = new ImageBrush(source);
+
+            FrameCounter.Text = "第 " + index + " 帧 / 共 " + (piece.Frames.Count - 1) + " 帧";
             DrawerCanvas.Focus();
         }
 
@@ -177,15 +190,15 @@ namespace AnimationDrawer.Pages
             {
                 Multiselect = false,
                 InitialDirectory = path,
-                Filter = "图片|*.png, *.jpg",
+                Filter = "图片|*.png; *.jpg",
                 FilterIndex = 1
             };
             if (openFileDialog.ShowDialog() == true)
             {
                 try
                 {
-                    App.source = new BitmapImage(new Uri(openFileDialog.FileName));
-                    ImageBrush brush = new(App.source);
+                    source = new BitmapImage(new Uri(openFileDialog.FileName));
+                    ImageBrush brush = new(source);
                     DrawerCanvas.Background = brush;
                 }
                 catch (UriFormatException)
@@ -195,9 +208,9 @@ namespace AnimationDrawer.Pages
             }
         }
 
-        private void BackgroundButton_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        private void BackgroundButton_MouseRightButtonDown(object sender, MouseButtonEventArgs e)
         {
-            App.source = null;
+            source = null;
             ImageBrush brush = new();
             DrawerCanvas.Background = brush;
         }
