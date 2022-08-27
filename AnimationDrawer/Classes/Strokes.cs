@@ -76,7 +76,7 @@ namespace AnimationDrawer.Ink
             return piece.Frames;
         }
 
-        public static List<StrokeCollection> GetCollectionList(AnimationPiece piece)
+        public static List<StrokeCollection> GetStrokeCollections(AnimationPiece piece)
         {
             List<StrokeCollection> strokes = new();
             foreach (SingleFrame item in piece.Frames)
@@ -122,6 +122,13 @@ namespace AnimationDrawer.Ink
             {
                 piece.Frames.AddRange(item.Frames);
             }
+            return piece;
+        }
+        public static AnimationPiece MergeAnimationPieces(AnimationPiece piece1, AnimationPiece piece2)
+        {
+            AnimationPiece piece = new();
+            piece.Frames.AddRange(piece1.Frames);
+            piece.Frames.AddRange(piece2.Frames);
             return piece;
         }
     }
