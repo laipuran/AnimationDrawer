@@ -1,8 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using AnimationDrawer.Ink;
 using System.Windows;
-using System.Windows.Ink;
-using System.Windows.Media;
-using AnimationDrawer.Ink;
 
 namespace AnimationDrawer
 {
@@ -11,7 +8,7 @@ namespace AnimationDrawer
     /// </summary>
     public partial class App : Application
     {
-        public static  AnimationPiece piece = new();
+        public static AnimationPiece piece = new();
 
         private void Application_Startup(object sender, StartupEventArgs e)
         {

@@ -89,7 +89,7 @@ namespace AnimationDrawer.Ink
         public static List<ImageSource?> GetImageSources(AnimationPiece piece)
         {
             List<ImageSource?> sources = new();
-            foreach(SingleFrame frame in piece.Frames)
+            foreach (SingleFrame frame in piece.Frames)
             {
                 sources.Add(frame.Background);
             }
