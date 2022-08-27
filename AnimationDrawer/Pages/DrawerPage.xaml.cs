@@ -1,8 +1,15 @@
-﻿using System.Collections.Generic;
+﻿using AnimationDrawer.Ink;
+using Microsoft.Win32;
+using Newtonsoft.Json;
+using System;
+using System.Collections.Generic;
+using System.IO;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Ink;
 using System.Windows.Input;
+using System.Windows.Media;
+using System.Windows.Media.Imaging;
 
 namespace AnimationDrawer.Pages
 {
@@ -36,6 +43,10 @@ namespace AnimationDrawer.Pages
                 FrameCounter.Text = "第 " + index + " 帧 / 共 " + (App.strokes.Count - 1) + " 帧";
                 DrawerCanvas.Strokes = strokes[index];
             }
+
+            ImageBrush brush = new(App.source);
+            DrawerCanvas.Background = brush;
+
             DrawerCanvas.Focus();
         }
 
@@ -48,12 +59,12 @@ namespace AnimationDrawer.Pages
         private void PreviousButton_Click(object sender, RoutedEventArgs e)
         {
             PreviousPage();
-            }
+        }
 
         private void NextButton_Click(object sender, RoutedEventArgs e)
         {
             NextPage();
-            }
+        }
 
         private void ClearButton_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
@@ -143,9 +154,52 @@ namespace AnimationDrawer.Pages
             DrawerCanvas.Focus();
         }
 
-        private void Page_Unloaded(object sender, RoutedEventArgs e)
+        private void DrawerCanvas_KeyDown(object sender, KeyEventArgs e)
         {
-            SaveStrokes();
+            if (e.Key == Key.Left || e.Key == Key.PageUp)
+            {
+                PreviousPage();
+            }
+            else if (e.Key == Key.Right || e.Key == Key.PageDown)
+            {
+                NextPage();
+            }
+        }
+
+        private void BackgroundButton_Click(object sender, RoutedEventArgs e)
+        {
+            string path = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "\\AniDrawer\\";
+            if (!Directory.Exists(path))
+            {
+                Directory.CreateDirectory(path);
+            }
+            OpenFileDialog openFileDialog = new()
+            {
+                Multiselect = false,
+                InitialDirectory = path,
+                Filter = "图片|*.png, *.jpg",
+                FilterIndex = 1
+            };
+            if (openFileDialog.ShowDialog() == true)
+            {
+                try
+                {
+                    App.source = new BitmapImage(new Uri(openFileDialog.FileName));
+                    ImageBrush brush = new(App.source);
+                    DrawerCanvas.Background = brush;
+                }
+                catch (UriFormatException)
+                {
+                    return;
+                }
+            }
+        }
+
+        private void BackgroundButton_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            App.source = null;
+            ImageBrush brush = new();
+            DrawerCanvas.Background = brush;
         }
     }
 }
