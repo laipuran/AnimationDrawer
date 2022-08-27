@@ -45,17 +45,7 @@ namespace AnimationDrawer.Ink
         public List<StrokeProperty> StrokeProperties = new();
         public ImageSource? Background;
 
-        public static SingleFrame GetSingleFrame(StrokeCollection strokes)
-        {
-            SingleFrame frame = new();
-            foreach (Stroke item in strokes)
-            {
-                frame.StrokeProperties.Add(StrokeProperty.GetStrokeProperty(item));
-            }
-            return frame;
-        }
-
-        public static SingleFrame GetSingleFrame(StrokeCollection strokes, ImageSource source)
+        public static SingleFrame GetSingleFrame(StrokeCollection strokes, ImageSource? source)
         {
             SingleFrame frame = new();
             foreach (Stroke item in strokes)
@@ -80,7 +70,6 @@ namespace AnimationDrawer.Ink
     public class AnimationPiece
     {
         public List<SingleFrame> Frames = new();
-        // public int FPS
 
         public static List<SingleFrame> GetFrames(AnimationPiece piece)
         {
@@ -97,6 +86,16 @@ namespace AnimationDrawer.Ink
             return strokes;
         }
 
+        public static List<ImageSource?> GetImageSources(AnimationPiece piece)
+        {
+            List<ImageSource?> sources = new();
+            foreach(SingleFrame frame in piece.Frames)
+            {
+                sources.Add(frame.Background);
+            }
+            return sources;
+        }
+
         public static AnimationPiece GetAnimationPiece(List<SingleFrame> frames)
         {
             AnimationPiece piece = new()
@@ -106,17 +105,7 @@ namespace AnimationDrawer.Ink
             return piece;
         }
 
-        public static AnimationPiece GetAnimationPiece(List<StrokeCollection> strokes)
-        {
-            AnimationPiece piece = new();
-            foreach (StrokeCollection stroke in strokes)
-            {
-                piece.Frames.Add(SingleFrame.GetSingleFrame(stroke));
-            }
-            return piece;
-        }
-
-        public static AnimationPiece GetAnimationPiece(List<StrokeCollection> strokes, ImageSource source)
+        public static AnimationPiece GetAnimationPiece(List<StrokeCollection> strokes, ImageSource? source)
         {
             AnimationPiece piece = new();
             foreach (StrokeCollection stroke in strokes)
