@@ -55,8 +55,8 @@ namespace AnimationDrawer.Pages
             {
                 return;
             }
-            await Task.Run(() => Dispatcher.BeginInvoke(new Action(() => { PreviewCanvas.Strokes = App.piece.Frames[index].Strokes; })));
-            await Task.Run(() => Dispatcher.BeginInvoke(new Action(() => { PreviewCanvas.Background = App.piece.Frames[index].Brush; })));
+            await Task.Run(() => Dispatcher.BeginInvoke(new Action(() => { PreviewCanvas.Strokes = App.piece.Frames[index].GetStrokes(); })));
+            await Task.Run(() => Dispatcher.BeginInvoke(new Action(() => { PreviewCanvas.Background = App.piece.Frames[index].GetBrush(); })));
             await Task.Run(() => Dispatcher.BeginInvoke(new Action(() => { FrameTextBlock.Text = (index + 1).ToString(); })));
         }
     }

@@ -59,34 +59,30 @@ namespace AnimationDrawer.Ink
 
     }
 
-    public class SingleFrame
+    interface ISingleFrame
+    {
+        StrokeCollection GetStrokes();
+        ImageBrush GetBrush();
+    }
+
+    public class SingleFrame : ISingleFrame
     {
         public List<StrokeProperty> StrokeProperties = new();
         public ImageSource? Background;
 
-        public StrokeCollection Strokes
+        public StrokeCollection GetStrokes()
         {
-            get
+            StrokeCollection strokes = new();
+            foreach (StrokeProperty item in StrokeProperties)
             {
-                StrokeCollection strokes = new();
-                foreach (StrokeProperty item in StrokeProperties)
-                {
-                    strokes.Add(item.Stroke);
-                }
-                return strokes;
+                strokes.Add(item.Stroke);
             }
+            return strokes;
         }
 
-        public ImageBrush Brush
+        public ImageBrush GetBrush()
         {
-            get
-            {
-                return new ImageBrush(Background);
-            }
-            set
-            {
-                Background = Brush.ImageSource;
-            }
+            return new ImageBrush(Background);
         }
 
         public static SingleFrame GetSingleFrame(StrokeCollection strokes, ImageSource? source)
@@ -120,7 +116,7 @@ namespace AnimationDrawer.Ink
             List<StrokeCollection> strokes = new();
             foreach (SingleFrame item in piece.Frames)
             {
-                strokes.Add(item.Strokes);
+                strokes.Add(item.GetStrokes());
             }
             return strokes;
         }

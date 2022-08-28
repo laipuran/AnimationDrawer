@@ -38,9 +38,6 @@ namespace AnimationDrawer.Pages
             }
 
             File.WriteAllText(path, json);
-#pragma warning disable CS8602 // 解引用可能出现空引用。
-            Process.Start("explorer.exe", Directory.GetParent(directory).FullName);
-#pragma warning restore CS8602 // 解引用可能出现空引用。
         }
 
         private void AddButton_Click(object sender, RoutedEventArgs e)

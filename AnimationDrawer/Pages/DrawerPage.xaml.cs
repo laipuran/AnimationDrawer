@@ -34,8 +34,8 @@ namespace AnimationDrawer.Pages
             }
             else
             {
-                DrawerCanvas.Strokes = piece.Frames[index].Strokes;
-                DrawerCanvas.Background = piece.Frames[index].Brush;
+                DrawerCanvas.Strokes = piece.Frames[index].GetStrokes();
+                DrawerCanvas.Background = piece.Frames[index].GetBrush();
             }
             FrameCounter.Text = $"第 {index + 1} 帧 / 共 {piece.Count} 帧";
 
@@ -121,6 +121,10 @@ namespace AnimationDrawer.Pages
         private void PreviousPage()
         {
             piece.Frames[index] = DrawerCanvas.GetSingleFrame();
+            if (index - 1 < 0)
+            {
+                return;
+            }
             index--;
             DisplayFrame();
         }
@@ -139,10 +143,10 @@ namespace AnimationDrawer.Pages
 
         private void DisplayFrame()
         {
-            DrawerCanvas.Strokes = piece.Frames[index].Strokes;
+            DrawerCanvas.Strokes = piece.Frames[index].GetStrokes();
             if (piece.Frames[index].Background is not null)
             {
-                DrawerCanvas.Background = piece.Frames[index].Brush;
+                DrawerCanvas.Background = piece.Frames[index].GetBrush();
             }
             else
                 DrawerCanvas.Background = new ImageBrush(source);
@@ -154,7 +158,7 @@ namespace AnimationDrawer.Pages
                 return;
             }
 
-            PreviewCanvas.Strokes = piece.Frames[index - 1].Strokes;
+            PreviewCanvas.Strokes = piece.Frames[index - 1].GetStrokes();
 
             DrawerCanvas.Focus();
         }
