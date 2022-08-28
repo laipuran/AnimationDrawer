@@ -20,7 +20,7 @@ namespace AnimationDrawer.Pages
         {
             InitializeComponent();
             PreviewCanvas.Strokes = new();
-            FrameSlider.Maximum = App.piece.Frames.Count - 1;
+            FrameSlider.Maximum = App.piece.Count - 1;
             FrameSlider.Value = 0;
         }
 
@@ -51,8 +51,12 @@ namespace AnimationDrawer.Pages
         private async void FrameSlider_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
         {
             index = (int)FrameSlider.Value;
-            await Task.Run(() => Dispatcher.BeginInvoke(new Action(() => { PreviewCanvas.Strokes = SingleFrame.GetStrokes(App.piece.Frames[index]); })));
-            await Task.Run(() => Dispatcher.BeginInvoke(new Action(() => { PreviewCanvas.Background = new ImageBrush(App.piece.Frames[index].Background); })));
+            if (index<=0 || index >= App.piece.Count)
+            {
+                return;
+            }
+            await Task.Run(() => Dispatcher.BeginInvoke(new Action(() => { PreviewCanvas.Strokes = App.piece.Frames[index].Strokes; })));
+            await Task.Run(() => Dispatcher.BeginInvoke(new Action(() => { PreviewCanvas.Background = App.piece.Frames[index].Brush; })));
             await Task.Run(() => Dispatcher.BeginInvoke(new Action(() => { FrameTextBlock.Text = (index + 1).ToString(); })));
         }
     }
