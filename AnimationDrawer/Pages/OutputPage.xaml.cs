@@ -83,7 +83,7 @@ namespace AnimationDrawer.Pages
         private void InputButton_Click(object sender, RoutedEventArgs e)
         {
             App.piece = piece;
-            MessageTextBlock.Text += "\n 导入完成";
+            MessageTextBlock.Text += "\n导入完成";
         }
     }
 }
