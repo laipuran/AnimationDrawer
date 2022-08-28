@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Windows.Controls;
 using System.Windows.Ink;
 using System.Windows.Input;
@@ -31,7 +30,7 @@ namespace AnimationDrawer.Ink
     interface IStrokeProperty
     {
         StylusPointCollection GetPointCollection();
-        
+
     }
 
     public class StrokeProperty : IStrokeProperty

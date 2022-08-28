@@ -150,7 +150,7 @@ namespace AnimationDrawer.Pages
             }
             else
                 DrawerCanvas.Background = new ImageBrush(source);
-            FrameCounter.Text = $"第 {index + 1} 帧 / 共 { piece.Count} 帧";
+            FrameCounter.Text = $"第 {index + 1} 帧 / 共 {piece.Count} 帧";
 
             if (index == 0)
             {

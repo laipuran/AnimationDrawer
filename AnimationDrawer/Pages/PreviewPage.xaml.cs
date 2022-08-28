@@ -5,7 +5,6 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Ink;
-using System.Windows.Media;
 
 namespace AnimationDrawer.Pages
 {
@@ -51,7 +50,7 @@ namespace AnimationDrawer.Pages
         private async void FrameSlider_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
         {
             index = (int)FrameSlider.Value;
-            if (index<=0 || index >= App.piece.Count)
+            if (index <= 0 || index >= App.piece.Count)
             {
                 return;
             }
