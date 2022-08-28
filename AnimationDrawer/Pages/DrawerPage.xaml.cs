@@ -18,35 +18,37 @@ namespace AnimationDrawer.Pages
     {
         private AnimationPiece piece = new();
         private ImageSource? source;
-        int index = 1;
+        int index = 0;
 
         public DrawerPage()
         {
             InitializeComponent();
+            InitializeDrawer();
 
+            piece = App.piece;
+
+            if (piece.Count == 0)
+            {
+                piece.Frames.Add(new());
+                DrawerCanvas.Background = new ImageBrush(source);
+            }
+            else
+            {
+                DrawerCanvas.Strokes = piece.Frames[index].Strokes;
+                DrawerCanvas.Background = piece.Frames[index].Brush;
+            }
+            FrameCounter.Text = $"第 {index + 1} 帧 / 共 {piece.Count} 帧";
+
+
+            DrawerCanvas.Focus();
+        }
+
+        private void InitializeDrawer()
+        {
             DrawerCanvas.DefaultDrawingAttributes.StylusTip = StylusTip.Ellipse;
             DrawerCanvas.DefaultDrawingAttributes.Height = 3;
             DrawerCanvas.DefaultDrawingAttributes.Width = 3;
             DrawerCanvas.DefaultDrawingAttributes.FitToCurve = true;
-
-            piece = new();
-            piece.Frames.Add(new());
-            piece = AnimationPiece.MergeAnimationPieces(piece, App.piece);
-
-            if (piece.Frames.Count == 1)
-            {
-                piece.Frames.Add(new());
-                ImageBrush brush = new(source);
-                DrawerCanvas.Background = brush;
-            }
-            else
-            {
-                FrameCounter.Text = "第 " + index + " 帧 / 共 " + (App.piece.Frames.Count - 1) + " 帧";
-                DrawerCanvas.Strokes = SingleFrame.GetStrokes(piece.Frames[index]);
-            }
-
-
-            DrawerCanvas.Focus();
         }
 
         private void ClearButton_Click(object sender, RoutedEventArgs e)
@@ -67,14 +69,13 @@ namespace AnimationDrawer.Pages
 
         private void ClearButton_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
-            index = 1;
+            index = 0;
             piece = new();
             DrawerCanvas.Strokes = new();
             PreviewCanvas.Strokes = new();
             piece.Frames.Add(new());
-            piece.Frames.Add(new());
             PreviousButton.IsEnabled = false;
-            FrameCounter.Text = "第 " + index + " 帧 / 共 " + (piece.Frames.Count - 1) + "帧";
+            FrameCounter.Text = $"第 {index + 1} 帧 / 共 {piece.Count} 帧";
             DrawerCanvas.Focus();
         }
 
@@ -110,58 +111,51 @@ namespace AnimationDrawer.Pages
 
         private void SaveStrokes()
         {
-            piece.Frames[index] = SingleFrame.GetSingleFrame(DrawerCanvas.Strokes, source);
+            piece.Frames[index] = DrawerCanvas.GetSingleFrame();
 
-            AnimationPiece tempPiece = new();
-            for (int i = 1; i < piece.Frames.Count; i++)
-            {
-                tempPiece.Frames.Add(piece.Frames[i]);
-            }
-
-            App.piece = tempPiece;
+            App.piece = piece;
 
             DrawerCanvas.Focus();
         }
 
         private void PreviousPage()
         {
-            piece.Frames[index] = SingleFrame.GetSingleFrame(DrawerCanvas.Strokes, source);
+            piece.Frames[index] = DrawerCanvas.GetSingleFrame();
             index--;
-            if (index <= 1)
-            {
-                PreviousButton.IsEnabled = false;
-            }
-            DisplayStrokes();
+            DisplayFrame();
         }
 
         private void NextPage()
         {
             PreviousButton.IsEnabled = true;
-            piece.Frames[index] = SingleFrame.GetSingleFrame(DrawerCanvas.Strokes, source);
+            piece.Frames[index] = DrawerCanvas.GetSingleFrame();
             index++;
-            if (index > piece.Frames.Count - 1)
+            if (index >= piece.Count)
             {
                 piece.Frames.Add(new());
             }
-            DisplayStrokes();
+            DisplayFrame();
         }
 
-        private void DisplayStrokes()
+        private void DisplayFrame()
         {
-            if (index <= 0)
+            DrawerCanvas.Strokes = piece.Frames[index].Strokes;
+            if (piece.Frames[index].Background is not null)
             {
+                DrawerCanvas.Background = piece.Frames[index].Brush;
+            }
+            else
+                DrawerCanvas.Background = new ImageBrush(source);
+            FrameCounter.Text = $"第 {index + 1} 帧 / 共 { piece.Count} 帧";
+
+            if (index == 0)
+            {
+                PreviousButton.IsEnabled = false;
                 return;
             }
-            DrawerCanvas.Strokes = SingleFrame.GetStrokes(piece.Frames[index]);
-            try
-            {
-                PreviewCanvas.Strokes = SingleFrame.GetStrokes(piece.Frames[index - 1]);
-            }
-            catch { }
 
-            DrawerCanvas.Background = new ImageBrush(source);
+            PreviewCanvas.Strokes = piece.Frames[index - 1].Strokes;
 
-            FrameCounter.Text = "第 " + index + " 帧 / 共 " + (piece.Frames.Count - 1) + " 帧";
             DrawerCanvas.Focus();
         }
 
@@ -209,8 +203,15 @@ namespace AnimationDrawer.Pages
         private void BackgroundButton_MouseRightButtonDown(object sender, MouseButtonEventArgs e)
         {
             source = null;
-            ImageBrush brush = new();
-            DrawerCanvas.Background = brush;
+            DrawerCanvas.Background = new ImageBrush();
+
+            if (Keyboard.IsKeyDown(Key.A))
+            {
+                foreach (SingleFrame item in piece.Frames)
+                {
+                    item.Background = null;
+                }
+            }
         }
     }
 }

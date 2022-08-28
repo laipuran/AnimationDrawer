@@ -12,7 +12,7 @@ namespace AnimationDrawer
 
         private void Application_Startup(object sender, StartupEventArgs e)
         {
-            piece.Frames.Add(new());
+
         }
     }
 }
