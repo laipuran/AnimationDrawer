@@ -1,43 +1,62 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.Windows.Controls;
 using System.Windows.Ink;
 using System.Windows.Input;
 using System.Windows.Media;
 
 namespace AnimationDrawer.Ink
 {
-    public class StrokeProperty
+    public static class ExtensionMethods
     {
-        public DrawingAttributes DrawingAttributes = new();
-        public List<StylusPoint> StylusPoints = new();
-
-        public static StrokeProperty GetStrokeProperty(Stroke stroke)
+        public static StrokeProperty GetStrokeProperty(this Stroke stroke)
         {
             StrokeProperty strokeProperty = new()
             {
-                DrawingAttributes = stroke.DrawingAttributes
+                Attributes = stroke.DrawingAttributes
             };
+
             foreach (StylusPoint item in stroke.StylusPoints)
             {
                 strokeProperty.StylusPoints.Add(item);
             }
             return strokeProperty;
         }
-
-        public static Stroke GetStroke(StrokeProperty strokeProperty)
+        public static SingleFrame GetSingleFrame(this InkCanvas canvas)
         {
-            Stroke stroke = new(GetStylusPointsCollection(strokeProperty.StylusPoints), strokeProperty.DrawingAttributes);
-            return stroke;
+            return SingleFrame.GetSingleFrame(canvas.Strokes, ((ImageBrush)canvas.Background).ImageSource);
+        }
+    }
+
+    interface IStrokeProperty
+    {
+        StylusPointCollection GetPointCollection();
+        
+    }
+
+    public class StrokeProperty : IStrokeProperty
+    {
+        public DrawingAttributes Attributes = new();
+        public List<StylusPoint> StylusPoints = new();
+
+        public Stroke Stroke
+        {
+            get
+            {
+                return new(GetPointCollection(), Attributes);
+            }
         }
 
-        public static StylusPointCollection GetStylusPointsCollection(List<StylusPoint> stylusPoints)
+        public StylusPointCollection GetPointCollection()
         {
             StylusPointCollection points = new();
-            foreach (StylusPoint item in stylusPoints)
+            foreach (StylusPoint item in StylusPoints)
             {
                 points.Insert(points.Count, item);
             }
             return points;
         }
+
     }
 
     public class SingleFrame
@@ -45,35 +64,55 @@ namespace AnimationDrawer.Ink
         public List<StrokeProperty> StrokeProperties = new();
         public ImageSource? Background;
 
+        public StrokeCollection Strokes
+        {
+            get
+            {
+                StrokeCollection strokes = new();
+                foreach (StrokeProperty item in StrokeProperties)
+                {
+                    strokes.Add(item.Stroke);
+                }
+                return strokes;
+            }
+        }
+
+        public ImageBrush Brush
+        {
+            get
+            {
+                return new ImageBrush(Background);
+            }
+            set
+            {
+                Background = Brush.ImageSource;
+            }
+        }
+
         public static SingleFrame GetSingleFrame(StrokeCollection strokes, ImageSource? source)
         {
             SingleFrame frame = new();
             foreach (Stroke item in strokes)
             {
-                frame.StrokeProperties.Add(StrokeProperty.GetStrokeProperty(item));
+                frame.StrokeProperties.Add(item.GetStrokeProperty());
             }
             frame.Background = source;
             return frame;
         }
 
-        public static StrokeCollection GetStrokes(SingleFrame frame)
-        {
-            StrokeCollection strokes = new();
-            foreach (StrokeProperty item in frame.StrokeProperties)
-            {
-                strokes.Add(StrokeProperty.GetStroke(item));
-            }
-            return strokes;
-        }
+
     }
 
     public class AnimationPiece
     {
         public List<SingleFrame> Frames = new();
 
-        public static List<SingleFrame> GetFrames(AnimationPiece piece)
+        public int Count
         {
-            return piece.Frames;
+            get
+            {
+                return Frames.Count;
+            }
         }
 
         public static List<StrokeCollection> GetStrokeCollections(AnimationPiece piece)
@@ -81,28 +120,9 @@ namespace AnimationDrawer.Ink
             List<StrokeCollection> strokes = new();
             foreach (SingleFrame item in piece.Frames)
             {
-                strokes.Add(SingleFrame.GetStrokes(item));
+                strokes.Add(item.Strokes);
             }
             return strokes;
-        }
-
-        public static List<ImageSource?> GetImageSources(AnimationPiece piece)
-        {
-            List<ImageSource?> sources = new();
-            foreach (SingleFrame frame in piece.Frames)
-            {
-                sources.Add(frame.Background);
-            }
-            return sources;
-        }
-
-        public static AnimationPiece GetAnimationPiece(List<SingleFrame> frames)
-        {
-            AnimationPiece piece = new()
-            {
-                Frames = frames
-            };
-            return piece;
         }
 
         public static AnimationPiece GetAnimationPiece(List<StrokeCollection> strokes, ImageSource? source)
@@ -124,12 +144,6 @@ namespace AnimationDrawer.Ink
             }
             return piece;
         }
-        public static AnimationPiece MergeAnimationPieces(AnimationPiece piece1, AnimationPiece piece2)
-        {
-            AnimationPiece piece = new();
-            piece.Frames.AddRange(piece1.Frames);
-            piece.Frames.AddRange(piece2.Frames);
-            return piece;
-        }
+
     }
 }
