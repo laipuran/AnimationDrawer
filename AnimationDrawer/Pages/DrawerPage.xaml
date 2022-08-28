@@ -46,7 +46,8 @@
             <Button Width="100" Content="设置背景"
                     x:Name="BackgroundButton" Click="BackgroundButton_Click"
                     Style="{StaticResource ContentButtonStyle}"
-                    Margin="20,0,0,0" MouseRightButtonDown="BackgroundButton_MouseRightButtonDown"/>
+                    Margin="20,0,0,0" ToolTip="按下A键以清除全部背景"
+                    MouseRightButtonDown="BackgroundButton_MouseRightButtonDown"/>
         </StackPanel>
     </StackPanel>
 </Page>
