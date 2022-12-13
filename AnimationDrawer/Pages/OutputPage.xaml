@@ -6,7 +6,8 @@
       xmlns:local="clr-namespace:AnimationDrawer.Pages"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
-      Title="OutputPage">
+      Title="OutputPage"
+      Background="#3c3c3c">
 
     <StackPanel>
         <StackPanel Style="{StaticResource ContentStackPanelStyle}">

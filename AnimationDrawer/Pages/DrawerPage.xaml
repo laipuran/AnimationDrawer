@@ -5,7 +5,8 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:AnimationDrawer.Pages"
       mc:Ignorable="d" Unloaded="Page_Unloaded"
-      d:DesignHeight="950" d:DesignWidth="1200">
+      d:DesignHeight="950" d:DesignWidth="1200"
+      Background="#3c3c3c">
 
     <StackPanel>
         <TextBlock x:Name="FrameCounter" Text="第 1 帧 / 共 1 帧" Style="{StaticResource ContentTextBlockStyle}"/>

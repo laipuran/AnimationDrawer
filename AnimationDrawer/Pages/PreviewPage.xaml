@@ -6,7 +6,8 @@
       xmlns:local="clr-namespace:AnimationDrawer.Pages"
       mc:Ignorable="d" 
       d:DesignHeight="825" d:DesignWidth="1200"
-      Title="PreviewPage">
+      Title="PreviewPage"
+      Background="#3c3c3c">
     <StackPanel>
         <TextBlock x:Name="FpsTextBlock" Text="帧率：50" Style="{StaticResource ContentTextBlockStyle}"/>
         <Border BorderBrush="{x:Static SystemParameters.WindowGlassBrush}"

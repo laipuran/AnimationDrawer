@@ -5,7 +5,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:AnimationDrawer"
         mc:Ignorable="d" WindowStartupLocation="CenterScreen"
-        Title="Animation Drawer" Height="950" Width="1200">
+        Title="Animation Drawer" Height="950" Width="1200"
+        Background="#3c3c3c">
     <Window.Resources>
         <Storyboard x:Key="MenuOpen">
             <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(FrameworkElement.Width)"
