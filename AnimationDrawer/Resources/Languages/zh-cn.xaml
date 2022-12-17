@@ -1,0 +1,26 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:s="clr-namespace:System;assembly=netstandard">
+    <s:String x:Key="DrawerPage">绘图</s:String>
+    <s:String x:Key="OutputPage">导出</s:String>
+    <s:String x:Key="PreviewPage">预览</s:String>
+    <s:String x:Key="Frames">帧数</s:String>
+    <s:String x:Key="FrameRate">帧率</s:String>
+    <s:String x:Key="NextFrame">下一张</s:String>
+    <s:String x:Key="PreviousFrame">上一张</s:String>
+    <s:String x:Key="Clear">清除</s:String>
+    <s:String x:Key="Eraser">橡皮</s:String>
+    <s:String x:Key="Select">选择</s:String>
+    <s:String x:Key="Save">保存</s:String>
+    <s:String x:Key="Pen">画笔</s:String>
+    <s:String x:Key="ClickToChange">单击切换工具</s:String>
+    <s:String x:Key="PressAToClearAll">按下A键以清除全部背景</s:String>
+    <s:String x:Key="SetBackground">设置背景</s:String>
+    <s:String x:Key="Play">播放</s:String>
+    <s:String x:Key="ImportedAni">已导入的动画：</s:String>
+    <s:String x:Key="AddFile">添加文件</s:String>
+    <s:String x:Key="MergeAni">合并动画</s:String>
+    <s:String x:Key="ImportToCanvas">导入画板</s:String>
+    <s:String x:Key="OutputAsJSON">将画板导出为 .json 文件：</s:String>
+    <s:String x:Key="Output">导出</s:String>
+</ResourceDictionary>

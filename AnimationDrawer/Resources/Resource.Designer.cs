@@ -69,5 +69,14 @@ namespace AnimationDrawer.Resources {
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
+        
+        /// <summary>
+        ///   查找类似 上一帧 的本地化字符串。
+        /// </summary>
+        internal static string PreviousFrame {
+            get {
+                return ResourceManager.GetString("PreviousFrame", resourceCulture);
+            }
+        }
     }
 }
