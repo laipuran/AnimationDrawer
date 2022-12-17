@@ -9,7 +9,7 @@
       Background="#3c3c3c">
 
     <StackPanel>
-        <TextBlock x:Name="FrameCounter" Text="第 1 帧 / 共 1 帧" Style="{StaticResource ContentTextBlockStyle}"/>
+        <TextBlock x:Name="FrameCounter" Text="" Style="{StaticResource ContentTextBlockStyle}"/>
         <Border BorderBrush="{x:Static SystemParameters.WindowGlassBrush}"
                 BorderThickness="7.5">
             <Grid Margin="0,10,0,0" Height="750">
@@ -22,31 +22,31 @@
             </Grid>
         </Border>
         <StackPanel Orientation="Horizontal" Margin="0,10,0,0" Height="40">
-            <Button Width="100" Content="上一张"
+            <Button Width="100" Content="{DynamicResource PreviousFrame}"
                     x:Name="PreviousButton" Click="PreviousButton_Click"
                     Style="{StaticResource ContentButtonStyle}"
                     IsEnabled="False" Margin="20,0,0,0"/>
-            <Button Width="100" Content="下一张"
+            <Button Width="100" Content="{DynamicResource NextFrame}"
                     x:Name="NextButton" Click="NextButton_Click"
                     Style="{StaticResource ContentButtonStyle}"
                     Margin="20,0,0,0"/>
-            <Button Width="100" Content="清空"
+            <Button Width="100" Content="{DynamicResource Clear}"
                     x:Name="ClearButton" Click="ClearButton_Click"
                     Style="{StaticResource ContentButtonStyle}"
                     MouseDoubleClick="ClearButton_MouseDoubleClick"
                     Margin="20,0,0,0"/>
-            <Button Width="100" Content="保存"
+            <Button Width="100" Content="{DynamicResource Save}"
                     x:Name="SaveButton" Click="SaveButton_Click"
                     Style="{StaticResource ContentButtonStyle}"
                     Margin="20,0,0,0"/>
-            <Button Width="100" Content="画笔"
+            <Button Width="100" Content="{DynamicResource Pen}"
                     x:Name="ChooseButton" Click="ChooseButton_Click"
                     Style="{StaticResource ContentButtonStyle}"
                     Margin="20,0,0,0" ToolTip="单击切换工具"/>
-            <Button Width="100" Content="设置背景"
+            <Button Width="100" Content="{DynamicResource SetBackground}"
                     x:Name="BackgroundButton" Click="BackgroundButton_Click"
                     Style="{StaticResource ContentButtonStyle}"
-                    Margin="20,0,0,0" ToolTip="按下A键以清除全部背景"
+                    Margin="20,0,0,0" ToolTip="{DynamicResource PressAToClearAll}"
                     MouseRightButtonDown="BackgroundButton_MouseRightButtonDown"/>
         </StackPanel>
     </StackPanel>

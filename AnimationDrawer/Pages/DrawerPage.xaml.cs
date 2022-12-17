@@ -37,7 +37,7 @@ namespace AnimationDrawer.Pages
                 DrawerCanvas.Strokes = piece.Frames[index].GetStrokes();
                 DrawerCanvas.Background = piece.Frames[index].GetBrush();
             }
-            FrameCounter.Text = $"第 {index + 1} 帧 / 共 {piece.Count} 帧";
+            FrameCounter.Text = $"帧数：{index + 1}/{piece.Count}";
 
 
             DrawerCanvas.Focus();
@@ -75,7 +75,7 @@ namespace AnimationDrawer.Pages
             PreviewCanvas.Strokes = new();
             piece.Frames.Add(new());
             PreviousButton.IsEnabled = false;
-            FrameCounter.Text = $"第 {index + 1} 帧 / 共 {piece.Count} 帧";
+            FrameCounter.Text = $"帧数：{index + 1}/{piece.Count}";
             DrawerCanvas.Focus();
         }
 
@@ -88,7 +88,7 @@ namespace AnimationDrawer.Pages
         {
             if (DrawerCanvas.EditingMode == InkCanvasEditingMode.Ink)
             {
-                DrawerCanvas.EditingMode = InkCanvasEditingMode.EraseByStroke;
+                DrawerCanvas.EditingMode = InkCanvasEditingMode.EraseByPoint;
                 ChooseButton.Content = "橡皮";
             }
             else if (DrawerCanvas.EditingMode == InkCanvasEditingMode.EraseByStroke)
@@ -150,7 +150,7 @@ namespace AnimationDrawer.Pages
             }
             else
                 DrawerCanvas.Background = new ImageBrush(source);
-            FrameCounter.Text = $"第 {index + 1} 帧 / 共 {piece.Count} 帧";
+            FrameCounter.Text = $"帧数：{index + 1}/{piece.Count}";
 
             if (index == 0)
             {

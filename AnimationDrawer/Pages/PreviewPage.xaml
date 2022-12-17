@@ -18,7 +18,7 @@
             </Grid>
         </Border>
         <StackPanel Orientation="Horizontal" Margin="0,10,0,0" Height="40">
-            <Button x:Name="PlayButton" Content="播放"
+            <Button x:Name="PlayButton" Content="{DynamicResource Play}"
                     Width="100" Margin="20,0,0,0"
                     Style="{StaticResource ContentButtonStyle}"
                     Click="PlayButton_Click"/>
