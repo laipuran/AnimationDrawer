@@ -91,6 +91,7 @@ namespace AnimationDrawer
                     Application.Current.Resources.MergedDictionaries.Add(Chinese);
                     Application.Current.Resources.MergedDictionaries.Remove(English);
                 }
+                LanguageListBoxItem.IsSelected = false;
             }
         }
 
