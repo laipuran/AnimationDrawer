@@ -1,8 +1,10 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Drawing;
 using System.Resources;
 using System.Windows;
 using System.Windows.Interop;
+using System.Windows.Markup;
 using System.Windows.Media;
 using System.Windows.Media.Animation;
 using System.Windows.Media.Imaging;
@@ -18,17 +20,26 @@ namespace AnimationDrawer
         Uri DrawerUri = new("Pages/DrawerPage.xaml", UriKind.Relative);
         Uri PreviewUri = new("Pages/PreviewPage.xaml", UriKind.Relative);
         Uri OutputUri = new("Pages/OutputPage.xaml", UriKind.Relative);
+        ResourceDictionary Chinese = new ResourceDictionary();
+        ResourceDictionary English = new ResourceDictionary();
         bool MenuClosed = true;
+        Languages currentLang = Languages.Chinese;
         public MainWindow()
         {
             InitializeComponent();
-
             Icon = GetIcon();
+            Chinese.Source = new Uri("Resources/Languages/zh-cn.xaml", UriKind.Relative);
+            English.Source = new Uri("Resources/Languages/en-us.xaml", UriKind.Relative);
         }
 
+        public enum Languages
+        {
+            Chinese,
+            English
+        }
         private static ImageSource GetIcon()
         {
-            ResourceManager Loader = Resource.ResourceManager;
+            ResourceManager Loader = AnimationDrawer.Resources.Resource.ResourceManager;
 #pragma warning disable CS8600 // 将 null 字面量或可能为 null 的值转换为非 null 类型。
 #pragma warning disable CS8604 // 引用类型参数可能为 null。
             Bitmap icon = new((Image)Loader.GetObject("icon"));
@@ -65,6 +76,21 @@ namespace AnimationDrawer
             else if (ContentListBox.SelectedItem == OutputListBoxItem)
             {
                 ContentFrame.NavigationService.Navigate(OutputUri);
+            }
+            else if (ContentListBox.SelectedItem == LanguageListBoxItem)
+            {
+                if (currentLang == Languages.Chinese)
+                {
+                    currentLang = Languages.English;
+                    Application.Current.Resources.MergedDictionaries.Add(English);
+                    Application.Current.Resources.MergedDictionaries.Remove(Chinese);
+                }
+                else
+                {
+                    currentLang = Languages.Chinese;
+                    Application.Current.Resources.MergedDictionaries.Add(Chinese);
+                    Application.Current.Resources.MergedDictionaries.Remove(English);
+                }
             }
         }
 

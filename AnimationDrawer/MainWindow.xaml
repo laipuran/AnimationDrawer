@@ -60,13 +60,24 @@
                            Margin="5,0,0,0"/>
                     </StackPanel>
                 </ListBoxItem>
-                
+
                 <ListBoxItem x:Name="OutputListBoxItem"
                              Style="{StaticResource ContentListBoxItemStyle}">
                     <StackPanel Style="{StaticResource NavigationStackPanelStyle}">
                         <TextBlock Text="&#xEDE1;"
                                 Style="{StaticResource IconTextBlockStyle}"/>
                         <TextBlock Text="导出"
+                           Style="{StaticResource NavigationTextBlockStyle}"
+                           Margin="5,0,0,0"/>
+                    </StackPanel>
+                </ListBoxItem>
+                
+                <ListBoxItem x:Name="LanguageListBoxItem"
+                             Style="{StaticResource ContentListBoxItemStyle}">
+                    <StackPanel Style="{StaticResource NavigationStackPanelStyle}">
+                        <TextBlock Text="&#xE12B;"
+                                Style="{StaticResource IconTextBlockStyle}"/>
+                        <TextBlock Text="语言"
                            Style="{StaticResource NavigationTextBlockStyle}"
                            Margin="5,0,0,0"/>
                     </StackPanel>
