@@ -89,6 +89,8 @@ namespace AnimationDrawer.Pages
             if (DrawerCanvas.EditingMode == InkCanvasEditingMode.Ink)
             {
                 DrawerCanvas.EditingMode = InkCanvasEditingMode.EraseByPoint;
+                DrawerCanvas.DefaultDrawingAttributes.Height = 10;
+                DrawerCanvas.DefaultDrawingAttributes.Width = 10;
                 ChooseButton.Content = MainWindow.GetString("Eraser");
             }
             else if (DrawerCanvas.EditingMode == InkCanvasEditingMode.EraseByPoint)
@@ -99,6 +101,8 @@ namespace AnimationDrawer.Pages
             else
             {
                 DrawerCanvas.EditingMode = InkCanvasEditingMode.Ink;
+                DrawerCanvas.DefaultDrawingAttributes.Height = 3;
+                DrawerCanvas.DefaultDrawingAttributes.Width = 3;
                 ChooseButton.Content = MainWindow.GetString("Pen");
             }
             DrawerCanvas.Focus();

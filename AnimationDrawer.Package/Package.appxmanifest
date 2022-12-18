@@ -9,7 +9,7 @@
   <Identity
     Name="31869PuranLai.10476DDEBDE25"
     Publisher="CN=7E1D7CD2-F295-49DB-BDCB-DDA4AF0952D2"
-    Version="1.2.0.0" />
+    Version="1.2.1.0" />
 
   <Properties>
     <DisplayName>Animation Drawer</DisplayName>
