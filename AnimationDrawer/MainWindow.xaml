@@ -44,7 +44,7 @@
                     <StackPanel Style="{StaticResource NavigationStackPanelStyle}">
                         <TextBlock Text="&#xE1C2;"
                                 Style="{StaticResource IconTextBlockStyle}"/>
-                        <TextBlock Text="绘图"
+                        <TextBlock Text="{DynamicResource DrawerPage}"
                            Style="{StaticResource NavigationTextBlockStyle}"
                            Margin="5,0,0,0"/>
                     </StackPanel>
@@ -55,7 +55,7 @@
                     <StackPanel Style="{StaticResource NavigationStackPanelStyle}">
                         <TextBlock Text="&#xE155;"
                                 Style="{StaticResource IconTextBlockStyle}"/>
-                        <TextBlock Text="预览"
+                        <TextBlock Text="{DynamicResource PreviewPage}"
                            Style="{StaticResource NavigationTextBlockStyle}"
                            Margin="5,0,0,0"/>
                     </StackPanel>
@@ -66,7 +66,7 @@
                     <StackPanel Style="{StaticResource NavigationStackPanelStyle}">
                         <TextBlock Text="&#xEDE1;"
                                 Style="{StaticResource IconTextBlockStyle}"/>
-                        <TextBlock Text="导出"
+                        <TextBlock Text="{DynamicResource OutputPage}"
                            Style="{StaticResource NavigationTextBlockStyle}"
                            Margin="5,0,0,0"/>
                     </StackPanel>
@@ -77,7 +77,7 @@
                     <StackPanel Style="{StaticResource NavigationStackPanelStyle}">
                         <TextBlock Text="&#xE12B;"
                                 Style="{StaticResource IconTextBlockStyle}"/>
-                        <TextBlock Text="语言"
+                        <TextBlock Text="{DynamicResource Language}"
                            Style="{StaticResource NavigationTextBlockStyle}"
                            Margin="5,0,0,0"/>
                     </StackPanel>
@@ -88,7 +88,7 @@
         </StackPanel>
         <TextBlock DockPanel.Dock="Top" x:Name="TitleTextBlock"
                    Style="{StaticResource TitleTextBlockStyle}"
-                   Text="绘图" Margin="20,5,0,0"/>
+                   Text="{DynamicResource DrawerPage}" Margin="20,5,0,0"/>
         <ScrollViewer Margin="20,10,0,0" HorizontalScrollBarVisibility="Auto">
             <Frame x:Name="ContentFrame" NavigationUIVisibility="Hidden"
                    Source="/Pages/DrawerPage.xaml" Navigated="ContentFrame_Navigated"/>

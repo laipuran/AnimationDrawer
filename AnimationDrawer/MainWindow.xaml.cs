@@ -37,6 +37,7 @@ namespace AnimationDrawer
             Chinese,
             English
         }
+
         private static ImageSource GetIcon()
         {
             ResourceManager Loader = AnimationDrawer.Resources.Resource.ResourceManager;
@@ -46,6 +47,11 @@ namespace AnimationDrawer
 #pragma warning restore CS8604 // 引用类型参数可能为 null。
 #pragma warning restore CS8600 // 将 null 字面量或可能为 null 的值转换为非 null 类型。
             return Imaging.CreateBitmapSourceFromHBitmap(icon.GetHbitmap(), IntPtr.Zero, Int32Rect.Empty, BitmapSizeOptions.FromEmptyOptions());
+        }
+
+        public static string GetString(string name)
+        {
+            return (string)Application.Current.FindResource(name);
         }
 
         private void NavigationButton_Click(object sender, RoutedEventArgs e)
@@ -68,14 +74,17 @@ namespace AnimationDrawer
             if (ContentListBox.SelectedItem == DrawerListBoxItem)
             {
                 ContentFrame.NavigationService.Navigate(DrawerUri);
+                TitleTextBlock.Text = GetString("DrawerPage");
             }
             else if (ContentListBox.SelectedItem == PreviewListBoxItem)
             {
                 ContentFrame.NavigationService.Navigate(PreviewUri);
+                TitleTextBlock.Text = GetString("PreviewPage");
             }
             else if (ContentListBox.SelectedItem == OutputListBoxItem)
             {
                 ContentFrame.NavigationService.Navigate(OutputUri);
+                TitleTextBlock.Text = GetString("OutputPage");
             }
             else if (ContentListBox.SelectedItem == LanguageListBoxItem)
             {
@@ -92,6 +101,7 @@ namespace AnimationDrawer
                     Application.Current.Resources.MergedDictionaries.Remove(English);
                 }
                 LanguageListBoxItem.IsSelected = false;
+                TitleTextBlock.Text = GetString("LanguageChanged");
             }
         }
 

@@ -1,11 +1,13 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:s="clr-namespace:System;assembly=netstandard">
-    <s:String x:Key="DrawerPage">Drawing</s:String>
+    <s:String x:Key="DrawerPage">Draw</s:String>
     <s:String x:Key="OutputPage">Output</s:String>
     <s:String x:Key="PreviewPage">Preview</s:String>
-    <s:String x:Key="Frames">Frames</s:String>
-    <s:String x:Key="FrameRate">Frame Rate</s:String>
+    <s:String x:Key="Language">Lang</s:String>
+    <s:String x:Key="LanguageChanged">Language Changed</s:String>
+    <s:String x:Key="Frames">Frames：</s:String>
+    <s:String x:Key="FrameRate">Frame Rate：</s:String>
     <s:String x:Key="NextFrame">Next</s:String>
     <s:String x:Key="PreviousFrame">Previous</s:String>
     <s:String x:Key="Clear">Clear</s:String>
@@ -17,10 +19,10 @@
     <s:String x:Key="PressAToClearAll">Press A and Click to Clear All Backgounds</s:String>
     <s:String x:Key="SetBackground">Set BG</s:String>
     <s:String x:Key="Play">Play</s:String>
-    <s:String x:Key="ImportedAni">Imported Animation(s): </s:String>
-    <s:String x:Key="AddFile">Add</s:String>
+    <s:String x:Key="ImportedAni">Imported Animation(s)：</s:String>
+    <s:String x:Key="AddFile">Add File</s:String>
     <s:String x:Key="MergeAni">Merge</s:String>
     <s:String x:Key="ImportToCanvas">Import to Canvas</s:String>
-    <s:String x:Key="OutputAsJSON">Output to file as .json</s:String>
+    <s:String x:Key="OutputAsJSON">Output to file as .json：</s:String>
     <s:String x:Key="Output">Output</s:String>
 </ResourceDictionary>

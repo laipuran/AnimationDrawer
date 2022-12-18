@@ -37,7 +37,7 @@ namespace AnimationDrawer.Pages
                 DrawerCanvas.Strokes = piece.Frames[index].GetStrokes();
                 DrawerCanvas.Background = piece.Frames[index].GetBrush();
             }
-            FrameCounter.Text = $"帧数：{index + 1}/{piece.Count}";
+            FrameCounter.Text = $"{index + 1}/{piece.Count}";
 
 
             DrawerCanvas.Focus();
@@ -75,7 +75,7 @@ namespace AnimationDrawer.Pages
             PreviewCanvas.Strokes = new();
             piece.Frames.Add(new());
             PreviousButton.IsEnabled = false;
-            FrameCounter.Text = $"帧数：{index + 1}/{piece.Count}";
+            FrameCounter.Text = $"{index + 1}/{piece.Count}";
             DrawerCanvas.Focus();
         }
 
@@ -89,17 +89,17 @@ namespace AnimationDrawer.Pages
             if (DrawerCanvas.EditingMode == InkCanvasEditingMode.Ink)
             {
                 DrawerCanvas.EditingMode = InkCanvasEditingMode.EraseByPoint;
-                ChooseButton.Content = "橡皮";
+                ChooseButton.Content = MainWindow.GetString("Eraser");
             }
-            else if (DrawerCanvas.EditingMode == InkCanvasEditingMode.EraseByStroke)
+            else if (DrawerCanvas.EditingMode == InkCanvasEditingMode.EraseByPoint)
             {
                 DrawerCanvas.EditingMode = InkCanvasEditingMode.Select;
-                ChooseButton.Content = "选择";
+                ChooseButton.Content = MainWindow.GetString("Select");
             }
             else
             {
                 DrawerCanvas.EditingMode = InkCanvasEditingMode.Ink;
-                ChooseButton.Content = "画笔";
+                ChooseButton.Content = MainWindow.GetString("Pen");
             }
             DrawerCanvas.Focus();
         }
@@ -150,7 +150,7 @@ namespace AnimationDrawer.Pages
             }
             else
                 DrawerCanvas.Background = new ImageBrush(source);
-            FrameCounter.Text = $"帧数：{index + 1}/{piece.Count}";
+            FrameCounter.Text = $"{index + 1}/{piece.Count}";
 
             if (index == 0)
             {

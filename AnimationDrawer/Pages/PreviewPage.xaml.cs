@@ -44,7 +44,7 @@ namespace AnimationDrawer.Pages
         private void FpsSlider_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
         {
             FPS = (int)FpsSlider.Value;
-            FpsTextBlock.Text = "帧率：" + FPS.ToString();
+            FpsTextBlock.Text = FPS.ToString();
         }
 
         private async void FrameSlider_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
