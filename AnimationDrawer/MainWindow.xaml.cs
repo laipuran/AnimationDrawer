@@ -141,7 +141,7 @@ namespace AnimationDrawer
                     Application.Current.Resources.MergedDictionaries.Remove(English);
                 }
                 LanguageListBoxItem.IsSelected = false;
-                TitleTextBlock.Text = GetString("LanguageChanged");
+                ContentFrame.Refresh();
             }
         }
 
