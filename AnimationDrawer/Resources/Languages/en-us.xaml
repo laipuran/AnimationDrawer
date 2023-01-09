@@ -5,7 +5,6 @@
     <s:String x:Key="OutputPage">Output</s:String>
     <s:String x:Key="PreviewPage">Preview</s:String>
     <s:String x:Key="Language">Lang</s:String>
-    <s:String x:Key="LanguageChanged">Language Changed</s:String>
     <s:String x:Key="Frames">Frames：</s:String>
     <s:String x:Key="FrameRate">Frame Rate：</s:String>
     <s:String x:Key="NextFrame">Next</s:String>

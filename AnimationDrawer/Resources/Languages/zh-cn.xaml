@@ -5,7 +5,6 @@
     <s:String x:Key="OutputPage">导出</s:String>
     <s:String x:Key="PreviewPage">预览</s:String>
     <s:String x:Key="Language">语言</s:String>
-    <s:String x:Key="LanguageChanged">语言切换</s:String>
     <s:String x:Key="Frames">帧数：</s:String>
     <s:String x:Key="FrameRate">帧率：</s:String>
     <s:String x:Key="NextFrame">下一张</s:String>
