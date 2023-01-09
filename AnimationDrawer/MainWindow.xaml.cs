@@ -18,11 +18,11 @@ namespace AnimationDrawer
     // TODO: Interaction logic needed
     public partial class MainWindow : Window
     {
-        Uri DrawerUri = new("Pages/DrawerPage.xaml", UriKind.Relative);
-        Uri PreviewUri = new("Pages/PreviewPage.xaml", UriKind.Relative);
-        Uri OutputUri = new("Pages/OutputPage.xaml", UriKind.Relative);
-        ResourceDictionary Chinese = new ResourceDictionary();
-        ResourceDictionary English = new ResourceDictionary();
+        readonly Uri DrawerUri = new("Pages/DrawerPage.xaml", UriKind.Relative);
+        readonly Uri PreviewUri = new("Pages/PreviewPage.xaml", UriKind.Relative);
+        readonly Uri OutputUri = new("Pages/OutputPage.xaml", UriKind.Relative);
+        ResourceDictionary Chinese = new();
+        ResourceDictionary English = new();
         bool MenuClosed = true;
         Languages currentLang = Languages.Chinese;
         public MainWindow()
@@ -72,30 +72,30 @@ namespace AnimationDrawer
         {
             DateTime start = DateTime.Now;
             TimeSpan span = new();
-            double k = (170 - 45) / Math.Sin(GetX(200, 150));
-            while (span.TotalMilliseconds < 200)
+            double k = (120 - 45) / Math.Sin(GetX(175, 135));
+            while (span.TotalMilliseconds < 175)
             {
                 span = DateTime.Now - start;
                 await Task.Run(() => Dispatcher.BeginInvoke(new Action(() => {
                     double x = span.TotalMilliseconds;
-                    double value = Math.Sin(GetX(x, 150)) * k + 45;
+                    double value = Math.Sin(GetX(x, 135)) * k + 45;
                     MenuStackPanel.Width = value;
                 })));
             }
-            MenuStackPanel.Width = 170;
+            MenuStackPanel.Width = 120;
         }
 
         private async void MenuClose()
         {
             DateTime start = DateTime.Now;
             TimeSpan span = new();
-            double k = (170 - 45) / Math.Sin(GetX(200, 150));
-            while (span.TotalMilliseconds < 200)
+            double k = (120 - 45) / Math.Sin(GetX(175, 135));
+            while (span.TotalMilliseconds < 175)
             {
                 span = DateTime.Now - start;
                 await Task.Run(() => Dispatcher.BeginInvoke(new Action(() => {
                     double x = span.TotalMilliseconds;
-                    double value = 170 - Math.Sin(GetX(x, 150)) * k;
+                    double value = 120 - Math.Sin(GetX(x, 135)) * k;
                     MenuStackPanel.Width = value;
                 })));
             }
@@ -126,23 +126,6 @@ namespace AnimationDrawer
                 ContentFrame.NavigationService.Navigate(OutputUri);
                 TitleTextBlock.Text = GetString("OutputPage");
             }
-            else if (ContentListBox.SelectedItem == LanguageListBoxItem)
-            {
-                if (currentLang == Languages.Chinese)
-                {
-                    currentLang = Languages.English;
-                    Application.Current.Resources.MergedDictionaries.Add(English);
-                    Application.Current.Resources.MergedDictionaries.Remove(Chinese);
-                }
-                else
-                {
-                    currentLang = Languages.Chinese;
-                    Application.Current.Resources.MergedDictionaries.Add(Chinese);
-                    Application.Current.Resources.MergedDictionaries.Remove(English);
-                }
-                LanguageListBoxItem.IsSelected = false;
-                ContentFrame.Refresh();
-            }
         }
 
 
@@ -171,6 +154,23 @@ namespace AnimationDrawer
                 TitleTextBlock.Text = "导出";
                 OutputListBoxItem.IsSelected = true;
             }
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            if (currentLang == Languages.Chinese)
+            {
+                currentLang = Languages.English;
+                Application.Current.Resources.MergedDictionaries.Add(English);
+                Application.Current.Resources.MergedDictionaries.Remove(Chinese);
+            }
+            else
+            {
+                currentLang = Languages.Chinese;
+                Application.Current.Resources.MergedDictionaries.Add(Chinese);
+                Application.Current.Resources.MergedDictionaries.Remove(English);
+            }
+            ContentFrame.NavigationService.Refresh();
         }
     }
 }
