@@ -17,7 +17,7 @@
                 BorderThickness="7.5">
             <Grid Margin="0,10,0,0" Height="750">
                 <InkCanvas x:Name="PreviewCanvas" IsEnabled="False"
-                       Height="720" Width="1080"/>
+                       Height="720" Width="1080" Background="White"/>
             </Grid>
         </Border>
         <StackPanel Orientation="Horizontal" Margin="0,10,0,0" Height="40">

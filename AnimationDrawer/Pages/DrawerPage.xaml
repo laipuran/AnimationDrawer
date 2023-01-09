@@ -15,12 +15,12 @@
         </StackPanel>
         <Border BorderBrush="{x:Static SystemParameters.WindowGlassBrush}"
                 BorderThickness="7.5">
-            <Grid Margin="0,10,0,0" Height="750">
+            <Grid Margin="0,10,0,0" Height="750" Background="White">
                 <InkCanvas x:Name="DrawerCanvas" Width="1080" Height="720"
                        Panel.ZIndex="10" Cursor="Pen" ForceCursor="True"
                        KeyDown="DrawerCanvas_KeyDown"/>
                 <InkCanvas x:Name="PreviewCanvas" Width="1080" Height="720"
-                       Panel.ZIndex="0" Background="Transparent"
+                       Panel.ZIndex="0" Background="White"
                        IsEnabled="False" Opacity="0.5"/>
             </Grid>
         </Border>
