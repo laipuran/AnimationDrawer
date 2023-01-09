@@ -13,13 +13,13 @@
             <TextBlock x:Name="RateText" Text="{DynamicResource FrameRate}" Style="{StaticResource ContentTextBlockStyle}"/>
             <TextBlock x:Name="FpsTextBlock" Text="50" Style="{StaticResource ContentTextBlockStyle}"/>
         </StackPanel>
-        <Border BorderBrush="{x:Static SystemParameters.WindowGlassBrush}"
-                BorderThickness="7.5">
-            <Grid Margin="0,10,0,0" Height="750">
-                <InkCanvas x:Name="PreviewCanvas" IsEnabled="False"
-                       Height="720" Width="1080" Background="White"/>
-            </Grid>
-        </Border>
+        <Grid Height="607.5"
+              Width="1080"
+              Margin="0,20,0,0"
+              Background="White">
+            <InkCanvas x:Name="PreviewCanvas" IsEnabled="False"
+                       Height="607.5" Width="1080" Background="White"/>
+        </Grid>
         <StackPanel Orientation="Horizontal" Margin="0,10,0,0" Height="40">
             <Button x:Name="PlayButton" Content="{DynamicResource Play}"
                     Width="100" Margin="20,0,0,0"
