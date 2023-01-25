@@ -13,15 +13,28 @@
                     HorizontalAlignment="Left"
                     VerticalAlignment="Stretch"
                     Orientation="Vertical"
-                    Width="42">
-            <Button x:Name="BackButton" Content="&#xE72B;"
-                    Style="{StaticResource NavigationButtonStyle}"
-                    Click="BackButton_Click"/>
+                    Width="45">
 
-            <Button x:Name="NavigationButton" Content="&#xE700;"
+            <StackPanel x:Name="Controller">
+                <Button
+                    x:Name="BackButton"
                     Style="{StaticResource NavigationButtonStyle}"
-                    Click="NavigationButton_Click"/>
+                    Click="BackButton_Click">
+                    <Image
+                        x:Name="BackContentImage"
+                        Source="/Resources/Icons/Back.png"/>
+                </Button>
 
+                <Button
+                    x:Name="NavigationButton"
+                    Style="{StaticResource NavigationButtonStyle}"
+                    Click="NavigationButton_Click">
+                    <Image
+                        x:Name="MenuContentImage"
+                        Source="/Resources/Icons/Menu.png"/>
+                </Button>
+            </StackPanel>
+            
             <ListBox x:Name="ContentListBox" Style="{StaticResource ClearListBoxStyle}"
                      ScrollViewer.HorizontalScrollBarVisibility="Disabled"
                      SelectionMode="Single" SelectionChanged="ContentListBox_SelectionChanged"
@@ -29,8 +42,11 @@
                 <ListBoxItem x:Name="DrawerListBoxItem"
                              Style="{StaticResource ContentListBoxItemStyle}">
                     <StackPanel Style="{StaticResource NavigationStackPanelStyle}">
-                        <TextBlock Text="&#xE1C2;"
-                                Style="{StaticResource IconTextBlockStyle}"/>
+                        <Image
+                            Margin="-8,0,0,0"
+                            Width="45"
+                            x:Name="CanvasImage"
+                            Source="/Resources/Icons/Canvas.png"/>
                         <TextBlock Text="{DynamicResource DrawerPage}"
                            Style="{StaticResource NavigationTextBlockStyle}"
                            Margin="5,0,0,0"/>
@@ -40,19 +56,26 @@
                 <ListBoxItem x:Name="PreviewListBoxItem"
                              Style="{StaticResource ContentListBoxItemStyle}">
                     <StackPanel Style="{StaticResource NavigationStackPanelStyle}">
-                        <TextBlock Text="&#xE155;"
-                                Style="{StaticResource IconTextBlockStyle}"/>
-                        <TextBlock Text="{DynamicResource PreviewPage}"
-                           Style="{StaticResource NavigationTextBlockStyle}"
-                           Margin="5,0,0,0"/>
+                        <Image
+                            Margin="-8,0,0,0"
+                            Width="45"
+                            x:Name="PreviewImage"
+                            Source="/Resources/Icons/Preview.png"/>
+                        <TextBlock
+                            Text="{DynamicResource PreviewPage}"
+                            Style="{StaticResource NavigationTextBlockStyle}"
+                            Margin="5,0,0,0"/>
                     </StackPanel>
                 </ListBoxItem>
 
                 <ListBoxItem x:Name="OutputListBoxItem"
                              Style="{StaticResource ContentListBoxItemStyle}">
                     <StackPanel Style="{StaticResource NavigationStackPanelStyle}">
-                        <TextBlock Text="&#xEDE1;"
-                                Style="{StaticResource IconTextBlockStyle}"/>
+                        <Image
+                            Margin="-8,0,0,0"
+                            Width="45"
+                            x:Name="OutputImage"
+                            Source="/Resources/Icons/Output.png"/>
                         <TextBlock Text="{DynamicResource OutputPage}"
                            Style="{StaticResource NavigationTextBlockStyle}"
                            Margin="5,0,0,0"/>
@@ -63,15 +86,18 @@
             <Button Style="{StaticResource NavigationButtonStyle}"
                     Width="120"
                     Click="Button_Click"
-                    BorderThickness="3">
+                    BorderThickness="3"
+                    HorizontalAlignment="Left">
                 <StackPanel Orientation="Horizontal"
-                            Width="120"
                             HorizontalAlignment="Left">
-                    <TextBlock Text="&#xE12B;"
-                               Style="{StaticResource IconTextBlockStyle}"/>
+                    <Image
+                        Margin="-33,0,0,0"
+                        Width="45"
+                        x:Name="SettingsImage"
+                        Source="/Resources/Icons/Settings.png"/>
                     <TextBlock Text="{DynamicResource Language}"
                                Style="{StaticResource NavigationTextBlockStyle}"
-                               Margin="13,0,0,0"/>
+                               Margin="3.5,0,0,0"/>
                 </StackPanel>
             </Button>
         </StackPanel>

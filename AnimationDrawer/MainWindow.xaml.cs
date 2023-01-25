@@ -1,4 +1,5 @@
-﻿using System;
+﻿using PuranLai.Algorithms;
+using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Resources;
@@ -28,7 +29,15 @@ namespace AnimationDrawer
         public MainWindow()
         {
             InitializeComponent();
-            Icon = GetIcon();
+
+            Icon = GetIcon("icon");
+            BackContentImage.Source = GetIcon("Back");
+            MenuContentImage.Source = GetIcon("Menu");
+            CanvasImage.Source = GetIcon("Canvas");
+            PreviewImage.Source = GetIcon("Preview");
+            OutputImage.Source = GetIcon("Output");
+            SettingsImage.Source = GetIcon("Settings");
+
             Chinese.Source = new Uri("Resources/Languages/zh-cn.xaml", UriKind.Relative);
             English.Source = new Uri("Resources/Languages/en-us.xaml", UriKind.Relative);
         }
@@ -39,12 +48,12 @@ namespace AnimationDrawer
             English
         }
 
-        private static ImageSource GetIcon()
+        private static ImageSource GetIcon(string name)
         {
             ResourceManager Loader = AnimationDrawer.Resources.Resource.ResourceManager;
 #pragma warning disable CS8600 // 将 null 字面量或可能为 null 的值转换为非 null 类型。
 #pragma warning disable CS8604 // 引用类型参数可能为 null。
-            Bitmap icon = new((Image)Loader.GetObject("icon"));
+            Bitmap icon = new((Image)Loader.GetObject(name));
 #pragma warning restore CS8604 // 引用类型参数可能为 null。
 #pragma warning restore CS8600 // 将 null 字面量或可能为 null 的值转换为非 null 类型。
             return Imaging.CreateBitmapSourceFromHBitmap(icon.GetHbitmap(), IntPtr.Zero, Int32Rect.Empty, BitmapSizeOptions.FromEmptyOptions());
@@ -68,38 +77,34 @@ namespace AnimationDrawer
             MenuClosed = !MenuClosed;
         }
 
-        private async void MenuOpen()
+        private unsafe void MenuOpen()
         {
-            DateTime start = DateTime.Now;
-            TimeSpan span = new();
-            double k = (120 - 45) / Math.Sin(GetX(175, 135));
-            while (span.TotalMilliseconds < 175)
+            Action<double> SetPanelWidth = new((double value) =>
             {
-                span = DateTime.Now - start;
-                await Task.Run(() => Dispatcher.BeginInvoke(new Action(() => {
-                    double x = span.TotalMilliseconds;
-                    double value = Math.Sin(GetX(x, 135)) * k + 45;
-                    MenuStackPanel.Width = value;
-                })));
+                double width = value;
+                Action<double> set = new((double value) => { MenuStackPanel.Width = value; });
+                Dispatcher.Invoke(set, width);
+            });
+            fixed (bool* isOpened = &MenuClosed)
+            {
+                Animation open = new(200, MenuStackPanel.Width, 135, Animation.GetSineValue, SetPanelWidth, 50, Flag: isOpened);
+                open.StartAnimationAsync();
             }
-            MenuStackPanel.Width = 120;
         }
 
-        private async void MenuClose()
+        private unsafe void MenuClose()
         {
-            DateTime start = DateTime.Now;
-            TimeSpan span = new();
-            double k = (120 - 45) / Math.Sin(GetX(175, 135));
-            while (span.TotalMilliseconds < 175)
+            Action<double> SetPanelWidth = new((double value) =>
             {
-                span = DateTime.Now - start;
-                await Task.Run(() => Dispatcher.BeginInvoke(new Action(() => {
-                    double x = span.TotalMilliseconds;
-                    double value = 120 - Math.Sin(GetX(x, 135)) * k;
-                    MenuStackPanel.Width = value;
-                })));
+                double width = value;
+                Action<double> set = new((double value) => { MenuStackPanel.Width = value; });
+                Dispatcher.Invoke(set, width);
+            });
+            fixed (bool* isOpened = &MenuClosed)
+            {
+                Animation open = new(200, MenuStackPanel.Width, 45, Animation.GetSineValue, SetPanelWidth, 50, Flag: isOpened);
+                open.StartAnimationAsync();
             }
-            MenuStackPanel.Width = 45;
         }
 
         private static double GetX(double time, int T)
