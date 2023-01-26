@@ -31,12 +31,6 @@ namespace AnimationDrawer
             InitializeComponent();
 
             Icon = GetIcon("icon");
-            BackContentImage.Source = GetIcon("Back");
-            MenuContentImage.Source = GetIcon("Menu");
-            CanvasImage.Source = GetIcon("Canvas");
-            PreviewImage.Source = GetIcon("Preview");
-            OutputImage.Source = GetIcon("Output");
-            SettingsImage.Source = GetIcon("Settings");
 
             Chinese.Source = new Uri("Resources/Languages/zh-cn.xaml", UriKind.Relative);
             English.Source = new Uri("Resources/Languages/en-us.xaml", UriKind.Relative);
@@ -107,13 +101,6 @@ namespace AnimationDrawer
             }
         }
 
-        private static double GetX(double time, int T)
-        {
-            double x = Math.PI * time / T / 2;
-
-            return x;
-        }
-
         private void ContentListBox_SelectionChanged(object sender, System.Windows.Controls.SelectionChangedEventArgs e)
         {
             if (ContentListBox.SelectedItem == DrawerListBoxItem)
@@ -144,17 +131,17 @@ namespace AnimationDrawer
 
         private void ContentFrame_Navigated(object sender, System.Windows.Navigation.NavigationEventArgs e)
         {
-            if ("/" + ContentFrame.Source.ToString() == DrawerUri.ToString())
+            if (ContentFrame.Source == DrawerUri)
             {
                 TitleTextBlock.Text = "绘图";
                 DrawerListBoxItem.IsSelected = true;
             }
-            else if ("/" + ContentFrame.Source.ToString() == PreviewUri.ToString())
+            else if (ContentFrame.Source == PreviewUri)
             {
                 TitleTextBlock.Text = "预览";
                 PreviewListBoxItem.IsSelected = true;
             }
-            else if ("/" + ContentFrame.Source.ToString() == OutputUri.ToString())
+            else if (ContentFrame.Source == OutputUri)
             {
                 TitleTextBlock.Text = "导出";
                 OutputListBoxItem.IsSelected = true;
