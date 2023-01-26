@@ -21,7 +21,6 @@
                     Style="{StaticResource NavigationButtonStyle}"
                     Click="BackButton_Click">
                     <Image
-                        x:Name="BackContentImage"
                         Source="/Resources/Icons/Back.png"/>
                 </Button>
 
@@ -30,7 +29,6 @@
                     Style="{StaticResource NavigationButtonStyle}"
                     Click="NavigationButton_Click">
                     <Image
-                        x:Name="MenuContentImage"
                         Source="/Resources/Icons/Menu.png"/>
                 </Button>
             </StackPanel>
@@ -45,7 +43,6 @@
                         <Image
                             Margin="-8,0,0,0"
                             Width="45"
-                            x:Name="CanvasImage"
                             Source="/Resources/Icons/Canvas.png"/>
                         <TextBlock Text="{DynamicResource DrawerPage}"
                            Style="{StaticResource NavigationTextBlockStyle}"
@@ -59,7 +56,6 @@
                         <Image
                             Margin="-8,0,0,0"
                             Width="45"
-                            x:Name="PreviewImage"
                             Source="/Resources/Icons/Preview.png"/>
                         <TextBlock
                             Text="{DynamicResource PreviewPage}"
@@ -74,7 +70,6 @@
                         <Image
                             Margin="-8,0,0,0"
                             Width="45"
-                            x:Name="OutputImage"
                             Source="/Resources/Icons/Output.png"/>
                         <TextBlock Text="{DynamicResource OutputPage}"
                            Style="{StaticResource NavigationTextBlockStyle}"
@@ -93,7 +88,6 @@
                     <Image
                         Margin="-33,0,0,0"
                         Width="45"
-                        x:Name="SettingsImage"
                         Source="/Resources/Icons/Settings.png"/>
                     <TextBlock Text="{DynamicResource Language}"
                                Style="{StaticResource NavigationTextBlockStyle}"

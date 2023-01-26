@@ -22,8 +22,8 @@ namespace AnimationDrawer
         readonly Uri DrawerUri = new("Pages/DrawerPage.xaml", UriKind.Relative);
         readonly Uri PreviewUri = new("Pages/PreviewPage.xaml", UriKind.Relative);
         readonly Uri OutputUri = new("Pages/OutputPage.xaml", UriKind.Relative);
-        ResourceDictionary Chinese = new();
-        ResourceDictionary English = new();
+        readonly ResourceDictionary Chinese = new() { Source = new Uri("Resources/Languages/zh-cn.xaml", UriKind.Relative) };
+        readonly ResourceDictionary English = new() { Source = new Uri("Resources/Languages/en-us.xaml", UriKind.Relative) };
         bool MenuClosed = true;
         Languages currentLang = Languages.Chinese;
         public MainWindow()
@@ -31,9 +31,6 @@ namespace AnimationDrawer
             InitializeComponent();
 
             Icon = GetIcon("icon");
-
-            Chinese.Source = new Uri("Resources/Languages/zh-cn.xaml", UriKind.Relative);
-            English.Source = new Uri("Resources/Languages/en-us.xaml", UriKind.Relative);
         }
 
         public enum Languages
