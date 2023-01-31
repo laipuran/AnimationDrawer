@@ -221,5 +221,22 @@ namespace AnimationDrawer.Pages
                 }
             }
         }
+
+        private void ChooseButton_MouseRightButtonDownClick(object sender, MouseButtonEventArgs e)
+        {
+            System.Windows.Forms.ColorDialog colorDialog = new System.Windows.Forms.ColorDialog();
+            if (colorDialog.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+            {
+                var temp = colorDialog.Color;
+                Color color = new()
+                {
+                    R = temp.R,
+                    G = temp.G,
+                    B = temp.B,
+                    A = temp.A
+                };
+                DrawerCanvas.DefaultDrawingAttributes.Color = color;
+            }
+        }
     }
 }

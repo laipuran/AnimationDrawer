@@ -7,7 +7,7 @@
         xmlns:local="clr-namespace:AnimationDrawer"
         mc:Ignorable="d" WindowStartupLocation="CenterScreen"
         Title="Animation Drawer" Height="850" Width="1200"
-        Background="#3c3c3c" Topmost="True">
+        Background="#3c3c3c" Topmost="False">
 
     <DockPanel>
         <StackPanel DockPanel.Dock="Left" x:Name="MenuStackPanel"
@@ -84,7 +84,7 @@
                 <StackPanel Style="{StaticResource NavigationStackPanelStyle}">
                     <svg:SvgViewbox
                         Width="25"
-                        Margin="3,0,0,0"
+                        Margin="5,0,0,0"
                         Source="/Resources/Icons/Settings.svg"/>
                     <TextBlock Text="{DynamicResource Language}"
                                Style="{StaticResource NavigationTextBlockStyle}"

@@ -44,6 +44,7 @@
                     Margin="20,0,0,0"/>
             <Button Width="100" Content="{DynamicResource Pen}"
                     x:Name="ChooseButton" Click="ChooseButton_Click"
+                    MouseRightButtonDown="ChooseButton_MouseRightButtonDownClick"
                     Style="{StaticResource ContentButtonStyle}"
                     Margin="20,0,0,0" ToolTip="单击切换工具"/>
             <Button Width="100" Content="{DynamicResource SetBackground}"
