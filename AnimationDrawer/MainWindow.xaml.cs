@@ -16,7 +16,6 @@ namespace AnimationDrawer
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
-    // TODO: Interaction logic needed
     public partial class MainWindow : Window
     {
         readonly Uri DrawerUri = new("Pages/DrawerPage.xaml", UriKind.Relative);

@@ -9,13 +9,13 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Remove="Resources\Icons\Back.png" />
-    <None Remove="Resources\Icons\Canvas.png" />
+    <None Remove="Resources\Icons\Back.svg" />
+    <None Remove="Resources\Icons\Canvas.svg" />
     <None Remove="Resources\Icons\icon.png" />
-    <None Remove="Resources\Icons\Menu.png" />
-    <None Remove="Resources\Icons\Output.png" />
-    <None Remove="Resources\Icons\Preview.png" />
-    <None Remove="Resources\Icons\Settings.png" />
+    <None Remove="Resources\Icons\Menu.svg" />
+    <None Remove="Resources\Icons\Output.svg" />
+    <None Remove="Resources\Icons\Preview.svg" />
+    <None Remove="Resources\Icons\Settings.svg" />
   </ItemGroup>
 
   <ItemGroup>
@@ -30,13 +30,13 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Resource Include="Resources\Icons\Back.png" />
-    <Resource Include="Resources\Icons\Canvas.png" />
+    <Resource Include="Resources\Icons\Back.svg" />
+    <Resource Include="Resources\Icons\Canvas.svg" />
     <Resource Include="Resources\Icons\icon.png" />
-    <Resource Include="Resources\Icons\Menu.png" />
-    <Resource Include="Resources\Icons\Output.png" />
-    <Resource Include="Resources\Icons\Preview.png" />
-    <Resource Include="Resources\Icons\Settings.png" />
+    <Resource Include="Resources\Icons\Menu.svg" />
+    <Resource Include="Resources\Icons\Output.svg" />
+    <Resource Include="Resources\Icons\Preview.svg" />
+    <Resource Include="Resources\Icons\Settings.svg" />
   </ItemGroup>
 
   <ItemGroup>

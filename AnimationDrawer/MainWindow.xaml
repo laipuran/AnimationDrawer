@@ -3,10 +3,11 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:svg="http://sharpvectors.codeplex.com/svgc/"
         xmlns:local="clr-namespace:AnimationDrawer"
         mc:Ignorable="d" WindowStartupLocation="CenterScreen"
         Title="Animation Drawer" Height="850" Width="1200"
-        Background="#3c3c3c">
+        Background="#3c3c3c" Topmost="True">
 
     <DockPanel>
         <StackPanel DockPanel.Dock="Left" x:Name="MenuStackPanel"
@@ -20,16 +21,18 @@
                     x:Name="BackButton"
                     Style="{StaticResource NavigationButtonStyle}"
                     Click="BackButton_Click">
-                    <Image
-                        Source="/Resources/Icons/Back.png"/>
+                    <svg:SvgViewbox
+                        Width="30"
+                        Source="/Resources/Icons/Back.svg"/>
                 </Button>
 
                 <Button
                     x:Name="NavigationButton"
                     Style="{StaticResource NavigationButtonStyle}"
                     Click="NavigationButton_Click">
-                    <Image
-                        Source="/Resources/Icons/Menu.png"/>
+                    <svg:SvgViewbox
+                        Width="30"
+                        Source="/Resources/Icons/Menu.svg"/>
                 </Button>
             </StackPanel>
             
@@ -40,10 +43,9 @@
                 <ListBoxItem x:Name="DrawerListBoxItem"
                              Style="{StaticResource ContentListBoxItemStyle}">
                     <StackPanel Style="{StaticResource NavigationStackPanelStyle}">
-                        <Image
-                            Margin="-8,0,0,0"
-                            Width="45"
-                            Source="/Resources/Icons/Canvas.png"/>
+                        <svg:SvgViewbox
+                            Width="30"
+                            Source="/Resources/Icons/Canvas.svg"/>
                         <TextBlock Text="{DynamicResource DrawerPage}"
                            Style="{StaticResource NavigationTextBlockStyle}"
                            Margin="5,0,0,0"/>
@@ -53,10 +55,9 @@
                 <ListBoxItem x:Name="PreviewListBoxItem"
                              Style="{StaticResource ContentListBoxItemStyle}">
                     <StackPanel Style="{StaticResource NavigationStackPanelStyle}">
-                        <Image
-                            Margin="-8,0,0,0"
-                            Width="45"
-                            Source="/Resources/Icons/Preview.png"/>
+                        <svg:SvgViewbox
+                            Width="30"
+                            Source="/Resources/Icons/Preview.svg"/>
                         <TextBlock
                             Text="{DynamicResource PreviewPage}"
                             Style="{StaticResource NavigationTextBlockStyle}"
@@ -67,31 +68,27 @@
                 <ListBoxItem x:Name="OutputListBoxItem"
                              Style="{StaticResource ContentListBoxItemStyle}">
                     <StackPanel Style="{StaticResource NavigationStackPanelStyle}">
-                        <Image
-                            Margin="-8,0,0,0"
-                            Width="45"
-                            Source="/Resources/Icons/Output.png"/>
+                        <svg:SvgViewbox
+                            Width="25"
+                            Source="/Resources/Icons/Output.svg"/>
                         <TextBlock Text="{DynamicResource OutputPage}"
                            Style="{StaticResource NavigationTextBlockStyle}"
-                           Margin="5,0,0,0"/>
+                           Margin="10,0,0,0"/>
                     </StackPanel>
                 </ListBoxItem>
             </ListBox>
             
             <Button Style="{StaticResource NavigationButtonStyle}"
-                    Width="120"
-                    Click="Button_Click"
-                    BorderThickness="3"
-                    HorizontalAlignment="Left">
-                <StackPanel Orientation="Horizontal"
-                            HorizontalAlignment="Left">
-                    <Image
-                        Margin="-33,0,0,0"
-                        Width="45"
-                        Source="/Resources/Icons/Settings.png"/>
+                    Width="145" Click="Button_Click"
+                    BorderThickness="3" HorizontalContentAlignment="Left">
+                <StackPanel Style="{StaticResource NavigationStackPanelStyle}">
+                    <svg:SvgViewbox
+                        Width="25"
+                        Margin="3,0,0,0"
+                        Source="/Resources/Icons/Settings.svg"/>
                     <TextBlock Text="{DynamicResource Language}"
                                Style="{StaticResource NavigationTextBlockStyle}"
-                               Margin="3.5,0,0,0"/>
+                               Margin="10,0,0,0"/>
                 </StackPanel>
             </Button>
         </StackPanel>
