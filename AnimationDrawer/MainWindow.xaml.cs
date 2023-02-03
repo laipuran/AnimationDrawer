@@ -65,7 +65,7 @@ namespace AnimationDrawer
             fixed (bool* isOpened = &MenuClosed)
             {
                 Animation open = new(200, MenuStackPanel.Width, 135, Animation.GetSineValue, SetPanelWidth, 50, Flag: isOpened);
-                open.StartAnimationAsync();
+                Task.Run(open.StartAnimationAsync);
             }
         }
 
@@ -80,7 +80,7 @@ namespace AnimationDrawer
             fixed (bool* isOpened = &MenuClosed)
             {
                 Animation open = new(200, MenuStackPanel.Width, 45, Animation.GetSineValue, SetPanelWidth, 50, Flag: isOpened);
-                open.StartAnimationAsync();
+                Task.Run(open.StartAnimationAsync);
             }
         }
 
