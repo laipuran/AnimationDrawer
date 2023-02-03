@@ -13,17 +13,19 @@
             <TextBlock x:Name="FramesText" Text="{DynamicResource Frames}" Style="{StaticResource ContentTextBlockStyle}"/>
             <TextBlock x:Name="FrameCounter" Text="" Style="{StaticResource ContentTextBlockStyle}"/>
         </StackPanel>
-        <Grid Background="White"
+        <Viewbox Width="1080" Height="607.5">
+            <Grid Background="White"
               Height="607.5"
               Width="1080"
               Margin="0,20,0,0">
-            <InkCanvas x:Name="DrawerCanvas" Width="1080" Height="607.5"
+                <InkCanvas x:Name="DrawerCanvas" Width="1080" Height="607.5"
                        Panel.ZIndex="10" Cursor="Pen" ForceCursor="True"
                        KeyDown="DrawerCanvas_KeyDown"/>
-            <InkCanvas x:Name="PreviewCanvas" Width="1080" Height="607.5"
+                <InkCanvas x:Name="PreviewCanvas" Width="1080" Height="607.5"
                        Panel.ZIndex="0" Background="White"
                        IsEnabled="False" Opacity="0.5"/>
-        </Grid>
+            </Grid>
+        </Viewbox>
         <StackPanel Orientation="Horizontal" Margin="0,10,0,0" Height="40">
             <Button Width="100" Content="{DynamicResource PreviousFrame}"
                     x:Name="PreviousButton" Click="PreviousButton_Click"
