@@ -89,17 +89,14 @@ namespace AnimationDrawer
             if (ContentListBox.SelectedItem == DrawerListBoxItem)
             {
                 ContentFrame.NavigationService.Navigate(DrawerUri);
-                TitleTextBlock.Text = GetString("DrawerPage");
             }
             else if (ContentListBox.SelectedItem == PreviewListBoxItem)
             {
                 ContentFrame.NavigationService.Navigate(PreviewUri);
-                TitleTextBlock.Text = GetString("PreviewPage");
             }
             else if (ContentListBox.SelectedItem == OutputListBoxItem)
             {
                 ContentFrame.NavigationService.Navigate(OutputUri);
-                TitleTextBlock.Text = GetString("OutputPage");
             }
         }
 
@@ -116,17 +113,17 @@ namespace AnimationDrawer
         {
             if (ContentFrame.Source == DrawerUri)
             {
-                TitleTextBlock.Text = "绘图";
+                TitleTextBlock.Text = GetString("DrawerPage");
                 DrawerListBoxItem.IsSelected = true;
             }
             else if (ContentFrame.Source == PreviewUri)
             {
-                TitleTextBlock.Text = "预览";
+                TitleTextBlock.Text = GetString("PreviewPage");
                 PreviewListBoxItem.IsSelected = true;
             }
             else if (ContentFrame.Source == OutputUri)
             {
-                TitleTextBlock.Text = "导出";
+                TitleTextBlock.Text = GetString("OutputPage");
                 OutputListBoxItem.IsSelected = true;
             }
         }
