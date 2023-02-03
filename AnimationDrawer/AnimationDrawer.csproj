@@ -7,6 +7,7 @@
 		<UseWPF>true</UseWPF>
 		<UseWindowsForms>true</UseWindowsForms>
 		<AllowUnsafeBlocks>True</AllowUnsafeBlocks>
+		<ApplicationIcon>Resources\icon.ico</ApplicationIcon>
 	</PropertyGroup>
 
 	<ItemGroup>
@@ -17,6 +18,10 @@
 		<None Remove="Resources\Icons\Output.svg" />
 		<None Remove="Resources\Icons\Preview.svg" />
 		<None Remove="Resources\Icons\Settings.svg" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <Content Include="Resources\icon.ico" />
 	</ItemGroup>
 
 	<ItemGroup>
@@ -38,21 +43,6 @@
 		<Resource Include="Resources\Icons\Output.svg" />
 		<Resource Include="Resources\Icons\Preview.svg" />
 		<Resource Include="Resources\Icons\Settings.svg" />
-	</ItemGroup>
-
-	<ItemGroup>
-		<Compile Update="Resources\Resource.Designer.cs">
-			<DesignTime>True</DesignTime>
-			<AutoGen>True</AutoGen>
-			<DependentUpon>Resource.resx</DependentUpon>
-		</Compile>
-	</ItemGroup>
-
-	<ItemGroup>
-		<EmbeddedResource Update="Resources\Resource.resx">
-			<Generator>ResXFileCodeGenerator</Generator>
-			<LastGenOutput>Resource.Designer.cs</LastGenOutput>
-		</EmbeddedResource>
 	</ItemGroup>
 
 	<ItemGroup>

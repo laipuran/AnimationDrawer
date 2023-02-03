@@ -5,6 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:svg="http://sharpvectors.codeplex.com/svgc/"
         xmlns:local="clr-namespace:AnimationDrawer"
+        Icon="/Resources/Icons/icon.png"
         mc:Ignorable="d" WindowStartupLocation="CenterScreen"
         Title="Animation Drawer" Height="850" Width="1200"
         Background="#3c3c3c" Topmost="False">
