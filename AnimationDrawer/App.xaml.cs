@@ -13,7 +13,8 @@ namespace AnimationDrawer
 
         private void Application_Startup(object sender, StartupEventArgs e)
         {
-
+            SplashWindow window = new();
+            window.Show();
         }
     }
 }

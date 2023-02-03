@@ -18,6 +18,7 @@
 		<None Remove="Resources\Icons\Output.svg" />
 		<None Remove="Resources\Icons\Preview.svg" />
 		<None Remove="Resources\Icons\Settings.svg" />
+		<None Remove="Resources\SplashScreen.svg" />
 	</ItemGroup>
 
 	<ItemGroup>
@@ -43,6 +44,7 @@
 		<Resource Include="Resources\Icons\Output.svg" />
 		<Resource Include="Resources\Icons\Preview.svg" />
 		<Resource Include="Resources\Icons\Settings.svg" />
+		<Resource Include="Resources\SplashScreen.svg" />
 	</ItemGroup>
 
 	<ItemGroup>
